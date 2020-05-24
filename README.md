@@ -6,7 +6,7 @@
 
 ## 최초설정 
 - git init
-- git pull
+- git pull --> 이후 git fetch 도 가능
 - git add {file name}
 - git commit -m {commitmessage}
 - git remote add origin https://github.com/kaIamansi/algorithm.git
