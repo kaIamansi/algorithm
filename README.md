@@ -11,3 +11,14 @@
 - git commit -m {commitmessage}
 - git remote add origin https://github.com/kaIamansi/algorithm.git
 -git push -u origin master
+
+## 에러 핸들링
+- mac과 windows로 인한 CRLF 에러 해결법
+### windows 
+```
+git config --global core.autocrlf true
+```
+### mac
+```
+git config --global core.autocrlf input
+```
