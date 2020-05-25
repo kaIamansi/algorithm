@@ -2,6 +2,7 @@
 
 # 알고리즘 스터디
 
+## 20. 05. 25
 ## 문자열 내 p와 y의 개수
 ## 문자열 내 p와 y의 개수(https://programmers.co.kr/learn/courses/30/lessons/12916)
 ##### 김해건의 문제
