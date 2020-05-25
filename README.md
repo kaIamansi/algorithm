@@ -3,7 +3,7 @@
 # 알고리즘 스터디
 
 ## 주의! 
-- 커밋 전 항상 **git status** --> **git pull or **git fetch**
+## 커밋 전 항상 **git status** --> **git pull** or **git fetch**
 
 ## 규칙
 - 매일 **7시 40분(10교시)** 스터디
