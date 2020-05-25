@@ -1,5 +1,18 @@
 ## algorithm workspace
 
+# 2020/05/26
+
+[소스코드(Java)](./GetMidCharacter/src/GetMidCharacter.java)
+
+[소스코드(Kotlin)](./GetMidCharacter/src/getMidCharacter.kt)
+
++ 문자열이 주어지면, 중간의 글자를 반환하기(글자수가 짝수면 가운데 두 글자.)
+
+1. (length-1)/2 글자수를 뽑아냄.
+2. 짝수라면 그 다음 글자를 뽑아냄.
+
+
+
 # 2020/05/25
 
 [소스코드](./pAndYCounter/src/PAndYCounter.java)
