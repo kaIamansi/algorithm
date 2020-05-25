@@ -19,3 +19,7 @@ function solution(s){
    else 
        return false;
 }
+
+## 풀이
+match를 이용해 s에 있는 y와 p를 찾고 카운트를 셈
+카운트가 같으면 true를 출력 아니면 false 출력
