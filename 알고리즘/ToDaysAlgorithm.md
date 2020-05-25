@@ -2,36 +2,25 @@
 
 # 알고리즘 스터디
 
-## 규칙.
-- 매일 **7시 40분(10교시)** 스터디
-- 못풀어도 막힌 풀이를 얘기하기
-- 이미 풀었던 문제라면 다른 언어로 시도해보기
+## 문자열 내 p와 y의 개수
+#### 문제 설명
+- 대문자와 소문자가 섞여있는 문자열 s가 주어집니다. s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 return 하는 solution를 완성하세요. 'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴합니다. 단, 개수를 비교할 때 대문자와 소문자는 구별하지 않습니다.
 
-## 벌칙
-### 다음날 **7시 40분**까지 
-#### 벌칙은 고의로 안풀었을 시, 협의를 통해 찬성이 과반수 *이상* 일 때 수행
+- 예를 들어 s가 pPoooyY면 true를 return하고 Pyy라면 false를 return합니다.
 
-- 김기강 : 노트북, 핸드폰 배경화면 ***일본 애니메이션***으로 바꾸기
-- 권하경 : ***왼손***만 쓰기
-- 김해건 : ***핸드폰***압수
-- 이규준 : ***앞머리까기***다니기
-- 전승민 : ***찍찍***거리기
+### 제한사항
+- 문자열 s의 길이 : 50 이하의 자연수
+- 문자열 s는 알파벳으로만 이루어져 있습니다.
 
-## 최초설정 
-- git init
-- git pull --> 이후 git fetch 도 가능
-- git add {file name}
-- git commit -m {commitmessage}
-- git remote add origin https://github.com/kaIamansi/algorithm.git
--git push -u origin master
+### 입출력 예
+| s | answer |
+| --- | --- |
+| "pPoooyY" |true |
+| "Pyy" | false |
 
-## 에러 발생시
-- mac과 windows 충돌로 인한 CRLF 에러 해결법
-### windows 
-```
-git config --global core.autocrlf true
-```
-### mac
-```
-git config --global core.autocrlf input
-```
+#### 입출력 예 설명
+- 입출력 예 #1
+'p'의 개수 2개, 'y'의 개수 2개로 같으므로 true를 return 합니다.
+
+- 입출력 예 #2
+'p'의 개수 1개, 'y'의 개수 2개로 다르므로 false를 return 합니다.
