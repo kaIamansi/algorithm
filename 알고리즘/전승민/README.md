@@ -2,7 +2,7 @@
 
 # 2020/05/25
 
-[소스코드](../pAndYCounter/src/PAndYCounter.java)
+[소스코드](./pAndYCounter/src/PAndYCounter.java)
 
 + 문제 : 문자열이 주어지면 p,y(대소문자 구분 x)의 개수를 세어 같으면 true, 다르면 false 반환하기.
 
