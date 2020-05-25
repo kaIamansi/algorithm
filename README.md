@@ -23,7 +23,7 @@
 - 전승민 : ***찍찍***거리기
 
 ## 최초설정 
-- git init
+- git clone https://github.com/kaIamansi/algorithm.git
 - git pull --> 이후 git fetch 도 가능
 - git add {file name}
 - git commit -m {commitmessage}
