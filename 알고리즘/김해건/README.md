@@ -19,6 +19,7 @@ function solution(s){
    else 
        return false;
 }
+~~~
 
 ## 풀이
 match를 이용해 s에 있는 y와 p를 찾고 카운트를 셈
