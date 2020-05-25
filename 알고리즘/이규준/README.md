@@ -1,6 +1,6 @@
 ## algorithm workspace
 
-- 20/05/25
+# 20/05/25
 ```
 def solution(s):
     lower_s = s.lower()
