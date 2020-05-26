@@ -8,3 +8,5 @@ public class TileOrnament {
         return dp[N-1]*2+dp[N]*2;
     }
 }
+
+// https://programmers.co.kr/learn/courses/30/lessons/43104

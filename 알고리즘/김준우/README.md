@@ -44,3 +44,26 @@ function solution(s) {
 2. 짝수, 홀수를 구분함.
 3. 짝수면 문자열의 중간 부분의 2개를 return
 4. 홀수면 문자열의 중간 부분을 return
+
+- 20/05/27
+
+```javascript
+function solution(n) {
+  const array = [1, 1];
+
+  for (let i = 1; i <= n - 2; i++) {
+    array.push(array[i - 1] + array[i]);
+  }
+
+  const reverseArray = array.reverse();
+
+  return reverseArray[0] * 2 + (reverseArray[0] + reverseArray[1]) * 2;
+}
+```
+
+### 풀이
+
+1. 문제에 나온 array를 만듬
+2. 가장 큰 상자 \* 2 === 세로 or 가로길이
+3. (가장 큰 상자 + 두번째 상자) \* 2 === 새로 or 가로길이
+4. 합체
