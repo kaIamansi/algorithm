@@ -47,7 +47,7 @@ F(6) = 21 / answer = F(8) \* 2 = 42;
 
 이를 증명하는 것을 그림으로 표현하면  
 
-![image](./tileOrnament/solution.jpeg)
+![image](./tileOrnament/solution.jpg)
 
 
 따라서 아래와 같이 코드를 짰지만
