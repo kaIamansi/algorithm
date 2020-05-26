@@ -1,16 +1,15 @@
 function solution(N) {
-  let answer = 0;
   let prev = 1;
   let now = 1;
-
-  for (var i = 0; i < N; i++) {
-    answer = prev + now;
-    prev = now;
-    now = answer;
+  let temp = 0;
+  
+  for (var i = 0; i < N-1; i++) {
+    temp = now;
+    now = prev + now;
+    prev = temp;
   }
-
-  answer += answer;
-  return answer;
+  
+  return 2*(now+prev);
 }
 
 // https://programmers.co.kr/learn/courses/30/lessons/43104
