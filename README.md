@@ -23,6 +23,7 @@
 - 김해건 : ***핸드폰***압수
 - 이규준 : ***앞머리까고***다니기
 - 전승민 : ***찍찍***거리기
+- 최이삭 : (미정)
 
 ## 최초설정 
 - git clone https://github.com/kaIamansi/algorithm.git
