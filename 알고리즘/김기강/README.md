@@ -31,9 +31,11 @@ public long solution(int N) {
 		...
 ```
 
-​	이를 해결하기 위해 필요없는 변수를 없애고, for문의 내부 코드를 바꿨다.
+​	이를 해결하기 위해 int 배열을 long 배열로 바꿨으며, 필요없는 변수를 없애고, for문의 코드를 바꿨다.
 
 ```java
+	long[] arr = new long[N];
+	...
 	for(int i = 2; i < N; i++) {	//피보나치
 	        arr[i] = arr[i-1] + arr[i-2];
         }
