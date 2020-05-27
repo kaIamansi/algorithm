@@ -23,3 +23,18 @@ function solution(s) {
 
 ### 풀이
 1. 문자열 s가 짝수인지 판별한 다음 짝수면 가운데 2개의 언어를, 홀수면 가운데 언어를 리턴한다.
+
+- 20/05/27
+```
+function solution(N) {
+  let arr = [1,1];
+  for(let i=2;i<N;i++){
+    arr.push(arr[i-2]+arr[i-1]);
+  }
+  
+  return (arr[arr.length-2]+arr[arr.length-1])*2+arr[arr.length-1]*2;
+}
+```
+
+### 풀이
+1. 피보나치를 배열에 넣고 끝에서 두번째와 첫번째를 직사각형 길이로 구한다.
