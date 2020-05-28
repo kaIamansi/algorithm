@@ -1,12 +1,4 @@
-function solution(participant, completion) {       
-    /* 
-    let answer = participant.filter(function(name) {
-         return !completion.includes(name)
-     });
-    
-    return answer.pop(); 
-    */
-    
+function solution(participant, completion) {         
     let answer = participant.sort();
     let remove = completion.sort();
     
