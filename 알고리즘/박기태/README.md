@@ -23,7 +23,7 @@ function solution(participant, completion) {
 4. find()를 이용해 participant 배열을 순회하면서 
 5. completionCount 배열에서 같은 이름(Key)을 찾고 count(Value)가
 
-6-1. `0`또는 `undefined`면 `true`로 내보내며 __'이름'을 바로 반환한다__.
+6-1. `0`또는 `undefined`면 `true`로 내보내며 __'이름'을 바로 반환한다__.  
 6-2. `1`이상일 때는 반전시켜 `false`로 내보내며 __이어서 순회하도록 하고__, count-1을 해준다.
 
 - 한줄 코드:
