@@ -3,10 +3,10 @@
 # 2020/05/28
 [소스코드(Javascript)](./2020-05-28/solution.js)
 - 문제 : 마라톤 참가한 사람 이름 배열과 마라통을 완주한 사람들이 담긴 배열을 비교해서 완주하지 못한 사람을 찾는다. 단, 동명이인이 있을 수 있다.
-<br>
+
 - 설명 : 이 알고리즘 분류가 '해시' 이다. 완주한 사람을 `'이름'-'count'`로 데이터를 저장하고 전체 사람과 비교하여 완주하지 못한 사람을 찾는다.
-<br>
-- 풀이 : 
+
+- 풀이 :  
 ```javascript
 function solution(participant, completion) {
   let completionCount = [];
@@ -16,7 +16,7 @@ function solution(participant, completion) {
 
   return participant.find(name => !completionCount[name]-- !== false);
 }
-```
+```  
 1. 완주한 사람을 카운팅할 배열(completionCount)을 생성한다.
 2. forEach()을 이용하여 completion 배열을 순회하며 completionCoun 배열에 `이름: count`를 추가한다.
 3. 처음 순회하는 이름이면 `0`으로 세팅하고, 중복(동명이인)으로 순회되는 '이름'이면 `+1`을 해준다.
