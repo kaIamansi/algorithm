@@ -30,3 +30,32 @@ def solution(n):
 - 1번쨰와 2번째는 1, 3번째부터는 arr[n-1], arr[n-2]번째를 더한 값이 된다(피보나치와 비슷하다)
 - n개의 타일로 구성된 직사각형은 긴 변의 길이가 arr[n+1]이 되고, 짧은 변의 길이가 arr[n]이 된다.
 - 따라서 `(가로+세로)*2`로 구할 수 있었다.
+
+### 2020-05-28
+```python
+from collections import Counter, defaultdict
+
+
+def solution(participant, completion):
+    d = defaultdict(int)
+    for name in participant:
+        d[name] += 1
+
+    for name in completion:
+        d[name] -= 1
+        if d[name] == 0:
+            del d[name]
+
+    return list(d.keys())[0]
+
+
+def solution(participant, completion):
+    return list(Counter(participant) - Counter(completion))[0]
+```
+### 해결 방법
+- key값에 대한 갯수를 value로 두어서 남은 key 값을 리턴해주었다. 
+
+### 효율성
+- python의 dictionary는 hash table과 같은 원리이다.
+- list 안의 string끼리 비교하는 것은 O(n^2) 이므로 시간 초과가 된다. 
+- hash 값으로 비교하면 상수 비교로 작동하기 때문에 더 효율적이다. 
