@@ -1,45 +1,21 @@
-// Recommended: (Fibo(n)+Fibo(n+1))*2
-// temp 변수대신 배열을 이용하고, shift()로 대입해준다.
+// 초기에 작성한 코드 최적화
 function solution(N) {
-  let arr = [1, 2];
-
-  for (let i = 2; i < N; i++) {
-    arr[2] = arr[0] + arr[1];
-    arr.shift();
-  }
-
-  return (arr[0] + arr[1]) * 2;
-}
-
-// (Fibo(n)+Fibo(n+1))*2
-// temp 변수를 이용한 교환 방법
-function solution2(N) {
-  let prev = 1;
-  let now = 1;
-  let temp = 0;
-
-  for (let i = 1; i < N; i++) {
-    temp = now;
-    now = prev + now;
-    prev = temp;
-  }
-
-  return 2 * (now + prev);
-}
-
-// Other: Fibo(n+2)*2
-function solution3(N) {
-  let prev = 1;
-  let now = 1;
-  let temp = 0;
+  const arr = [1, 1];
 
   for (let i = 0; i < N; i++) {
-    temp = now;
-    now = prev + now;
-    prev = temp;
+    arr.push(arr[0] + arr[1]);
+    arr.shift();
   }
+  return arr.pop() * 2; // arr[N+1] * 2
+}
 
-  return 2 * now;
+// Recommended & 20%~ Fast
+function solution(N) {
+  const arr = [1, 1];
+
+  for (let i = 0; i < N; i++) arr.push(arr[i] + arr[i + 1]);
+
+  return arr.pop() * 2; // arr[N+1] * 2
 }
 
 // https://programmers.co.kr/learn/courses/30/lessons/43104

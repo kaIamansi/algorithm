@@ -1,6 +1,22 @@
 ## algorithm workspace
 
+# 2020/05/28
 
+[소스코드(Map)](./uncompletedPlayer/src/UncompletedPlayerMap.java)
+
+[소스코드(정렬)](./uncompletedPlayer/src/UncompletedPlayerSort.java)
+
++ 참여 선수, 완주한 선수(참여 선수 수 - 1)가 주어지면, 완주하지 못한 선수 (1명)을 반환하는 문제.
+
+### 풀이 1(Map)
+
+1. 완주한 선수들의 컬렉션(Map)을 만들어 인원을 카운팅함.
+2. 완주한 선수들의 이름을 뽑아내 완주하지 못한 선수를 찾아냄.
+
+### 풀이 2(정렬)
+
+1. 완주한 선수, 참여 선수를 정렬함.
+2. 반복문을 돌려 값이 다른 경우에 함수를 반환시킴.
 
 # 2020/05/27
 
