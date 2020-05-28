@@ -8,7 +8,7 @@
 
 - 풀이 :  
 ```javascript
-function solution(participant, completion) {
+function solution(participant, completion) {  
   let completionCount = [];
 
   completion.forEach(cName =>
@@ -29,7 +29,8 @@ function solution(participant, completion) {
 - 한줄 코드:
 ```javascript
 const solution = (participant, completion) => participant.find(name => !completion[name]-- !== false, completion.forEach(cName => completion[cName] = (completion[cName] | 0) + 1));
-```
+```  
+
 
 # 2020/05/27
 
