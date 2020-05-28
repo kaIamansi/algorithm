@@ -2,9 +2,46 @@
 
 
 
+
+
+### 2020.05.28 알고리즘
+
+문제: https://programmers.co.kr/learn/courses/30/lessons/42576
+
+소스코드:
+
+```java
+import java.util.Arrays;
+class Solution {
+	public String solution(String[] participant, String[] completion) {
+		Arrays.sort(participant);
+		Arrays.sort(completion);
+
+		for(int i = 0; i < completion.length; i++) {
+			if(! participant[i].equals(completion[i])) {
+				return participant[i];
+			}
+		}
+
+		return participant[participant.length-1];
+	}
+}
+```
+
+기강이의 풀이:
+
+1. 두 문자열 배열을 Arrays.sort를 통해 오름차순 정렬을 해준다.
+2. 정렬했기 때문에 같아야 한다.
+3. participant에 있는데 completion에 없으면 안 들어온 사람이다.
+4. 다 비교했는데 같았으면 participant의 마지막 인덱스 사람이 안 들어온 것이므로 return 해준다.
+
+
+
+
+
 ### 2020.05.27 알고리즘
 
-기강이의 풀이 :
+기강이의 풀이:
 
 1. 피보나치로 배열을 채웠다.
 2. 직사각형의 둘레를 구하기 위해 (맨 뒤 인덱스 * 4) + ((맨 뒤-1 인덱스) * 2) 를 리턴해줬다.
@@ -47,7 +84,7 @@ public long solution(int N) {
 
 ### 2020.05.26 알고리즘
 
-기강이의 풀이 :
+기강이의 풀이:
 
 1. 문자열 크기와 그 크기를 2로 나눴다.
 2. 나눈 크기가 홀수인 경우와 짝수인 경우를 나눴다.
@@ -58,7 +95,7 @@ public long solution(int N) {
 
 ### 2020.05.25 알고리즘
 
-기강이의 풀이 : 문자열 크기의 배열 만들고 char로 하나씩 넣어서 P와 Y의 갯수를 비교했다.
+기강이의 풀이: 문자열 크기의 배열 만들고 char로 하나씩 넣어서 P와 Y의 갯수를 비교했다.
 
 1차 수정
 - 문자열에 .toLowerCase 사용해서 비교하는 코드를 줄였다.
