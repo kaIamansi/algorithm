@@ -1,5 +1,40 @@
 ## algorithm workspace
 
+# 2020/05/29
+[소스코드(Javascript)](./2020-05-29/solution.js)
+- 문제 : 주어진 선행 스킬(문자) 순서(문자열)에 맞는 스킬트리(문자열)의 개수를 구해라.  
+
+- 설명 :
+  1. 하나의 스킬트리 중복된 스킬이 없다.  
+  2. __이전 스킬을 배우지 않은 경우__ 불가능한 스킬트리다.  
+  3. __스킬을 배우는 순서가 바뀌는 경우__ 불가능한 스킬트리다.  
+  4. 위 문제가 없으면 가능한 스킬트리다.  
+  <br>
+- 풀이 :
+```javascript
+function solution(skill, skill_trees) {
+  return skill_trees.length - skill_trees.filter(skill_tree => {
+    let marked = false;
+    let prev = -1; // 스킬 index는 0이상. 처음엔 prev에 저장되도록 -1 설정
+
+    for (let i = 0; i < skill.length; i++) {
+      let temp = skill_tree.indexOf(skill[i]);
+
+      if (temp === -1) marked = true;
+      else if (marked === true || temp < prev) return true;
+      else prev = temp;
+    }
+  }).length;
+}
+```  
+1. 하나의 스킬트리에는 중복된 스킬이 없기 때문에 `indexOf`를 통해 선행 스킬을 순회하면서 index를 추출한다.  
+2. 이번 선행 스킬이 스킬트리에 없다면 marked를 true로 둔다.  
+3. __스킬트리에 있다면 `marked`가 true(이전 스킬을 배우지 않았음)이거나 `prev`와 비교하여 이전 선행 스킬의 index가 더 높다면(스킬 배우는 순서가 바뀜) 이것은 _망트리_ 이기 때문에 바로 폐기시킨다.__  
+4. 위의 문제가 없으면 다시 prev에 현재 index를 저장한다.  
+5. 2~3번을 선행 스킬 개수만큼 반복한다.  
+6. 5번을 스킬트리 개수만큼 반복한다.  
+7. __전체 스킬트리 개수 - 폐기한 스킬트리의 개수__ 로 가능한 스킬트리 개수를 구한다.   
+
 # 2020/05/28
 [소스코드(Javascript)](./2020-05-28/solution.js)
 - 문제 : 마라톤 참가한 사람 이름 배열과 마라통을 완주한 사람들이 담긴 배열을 비교해서 완주하지 못한 사람을 찾는다. 단, 동명이인이 있을 수 있다.
