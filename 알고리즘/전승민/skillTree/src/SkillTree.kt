@@ -4,13 +4,13 @@ fun main() {
     println(solution(skill, skill_trees))
 }
 
-fun solution(skill: String, skill_trees: Array<String>): Int {
+fun solution(skill: String, skill_trees: Array<String>): Int
+        = with(checkSkillSequence(skill)) {
     var result = 0
-    val alphabetArr = checkSkillSequence(skill)
     for (s: String in skill_trees) {
-        if (isCollectSkillTree(alphabetArr, s)) result++
+        if (isCollectSkillTree(this, s)) result++
     }
-    return result
+    result
 }
 
 fun checkSkillSequence(skill: String): Array<Int?> =
