@@ -10,7 +10,7 @@ function solution(skill, skill_trees) {
             if (skill.search(compare[j]) != -1)
                 result += compare[j];
         
-        if (result == skill || skill.search(result) == 0) 
+        if (skill.search(result) == 0) 
             count++;
     }
     
