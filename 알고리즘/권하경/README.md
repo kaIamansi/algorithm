@@ -1,5 +1,35 @@
 # algorithm workspace
 
+## 20/05/29
+
+- js
+```
+function solution(skill, skill_trees) {
+  let answer=0;
+  skill_trees.forEach(element => {
+    let index=0;
+    for(let i in element){
+      if(element[i]==skill[index])  index++;
+      else if(element[i]!=skill[index]&&skill.includes(element[i]))  break;
+      if(i==element.length-1||index==skill.length) {
+        answer++;
+        break;
+      }
+    }
+  });
+  return answer;
+}
+
+```
+
+
+### 풀이
+
+- js 
+1. 선행스킬 순서가 맞으면 index를 하나씩 늘리고 선행스킬 순서가 틀리면 break문으로 빠져나간 다음 다시 돈다.
+2. index가 skill 길이와 같거나 i가 element길이와 같으면 answer값을 하나씩 늘린다. 
+
+
 ## 20/05/28
 
 - js
