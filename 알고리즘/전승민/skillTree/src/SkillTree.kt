@@ -1,9 +1,3 @@
-fun main() {
-    val skill = "CBD"
-    val skill_trees = arrayOf("BACDE", "CBADF", "AECB", "BDA")
-    println(solution(skill, skill_trees))
-}
-
 fun solution(skill: String, skill_trees: Array<String>): Int
         = with(checkSkillSequence(skill)) {
     var result = 0
