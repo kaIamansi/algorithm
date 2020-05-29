@@ -34,6 +34,8 @@ function solution(skill, skill_trees) {
 3. 추출한 문자들이 skill과 같거나 순서에 맞게 배열되어 있다면 count를 올린다. (search함수를 사용하여 판별)
 
 ### 부가 설명
+- **skill.search(compare[j]) != -1**
+    - -1이라면 포함되어 있지 않다는 뜻이기 때문에 -1만 아니면 포함되어 있음을 알 수 있다.
 - **skill.search(result) == 0**
     - 0인 이유는 result가 skill의 순서에 맞게 추출되어 있기 때문에 search를 통해 찾게 되면 인덱스 값은 0이 나오기 때문이다.
 
