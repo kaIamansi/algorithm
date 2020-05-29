@@ -1,5 +1,40 @@
 ## algorithm workspace
 
+## 20/05/29
+
+```javascript
+function solution(skill, skill_trees) {
+  let answer = 0;
+
+  skill_trees.forEach((skillTree) => {
+    const newSkillTree = [...skillTree]
+      .filter((d) => skill.includes(d))
+      .join("");
+    let checker = true;
+
+    for (let i = 0; i < newSkillTree.length; i++) {
+      if (newSkillTree[i] !== skill[i]) {
+        checker = false;
+      }
+    }
+
+    if (checker) answer++;
+  });
+
+  return answer;
+}
+```
+
+### 풀이
+
+1. `skill_trees`의 데이터에 접근해서 이를 배열로 변경함. (EX] ["BACDE", ...] -> [["B", "A", "C", "D", "E"], ...])
+2. skillTree와 skill을 비교하여 중복 문자열을 제거.
+3. 다시 문자열로 변경.
+4. 중복을 제거한 문자와 skill을 차례대로 비교하여 순서를 확인.
+5. 순서가 옳바르면 answer를 올림.
+
+---
+
 ## 20/05/28
 
 ```javascript
