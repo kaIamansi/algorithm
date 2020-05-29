@@ -1,5 +1,19 @@
 ## algorithm workspace
 
+# 2020/05/29
+
+[소스코드(Kotlin)](./skillTree/src/SkillTree.kt)
+
+[소스코드(Java)](./skillTree/src/SkillTree.java)
+
++ 선행 스킬 순서 skill 순서를 준수한 스킬트리의 수를 반환하는 문제.
++ 모든 스킬과 스킬트리는 각각 대문자 알파벳 한 글자로 주어짐.
+
+### 풀이
+
+1. 대문자 알파벳 A의 아스키코드(65)를 뺀 후, 26개 크기의 배열에 스킬 순서를 저장.
+2. 각 스킬트리를 순서대로 검색해 선행 스킬에 맞게 스킬트리를 짰는지 확인.
+
 # 2020/05/28
 
 [소스코드(Map)](./uncompletedPlayer/src/UncompletedPlayerMap.java)
