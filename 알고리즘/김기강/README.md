@@ -2,6 +2,44 @@
 
 
 
+### 2020.05.29 알고리즘
+
+문제: https://programmers.co.kr/learn/courses/30/lessons/49993
+
+소스코드:
+
+```java
+class Solution {
+	public int solution(String skill, String[] skill_trees) {
+		int answer = skill_trees.length;
+		int idx1, idx2;
+
+		for(int i = 0; i < skill_trees.length; i++) {
+			idx1 = skill_trees[i].indexOf(skill.charAt(0));
+			
+			for(int j = 1; j < skill.length(); j++) {
+				idx2 = skill_trees[i].indexOf(skill.charAt(j));
+				if(idx1 > idx2 && idx2 != -1 || idx == -1 && idx2 != -1) {
+					answer--;
+					break;
+				}
+				idx1 = idx2;
+			}
+		}
+
+		return answer;
+	}
+}
+```
+
+기강이의 풀이:
+
+1. skill_trees의 길이만큼 answer로 해둔다.
+2. 변수 2개를 만든다.
+3. idx1에는 skill의 비교 기준 문자를, idx2에는 skill의 비교 대상 문자를 넣는다.
+4. 만약 idx1이 idx2보다 크면 idx2가 더 앞에 위치한 것이기 때문에 answer 1개를 깎는다. 또한, indexOf는 해당 문자가 없으면 -1을 리턴하기 때문에 idx1이 없는데 idx2이 있다면 그것도 안되는 것이기 때문에 answer을 1개 깎는다.
+5. 이후 skill의 남은 문자열을 비교하기 위해 idx1에 idx2를 대입한다.
+
 
 
 ### 2020.05.28 알고리즘
