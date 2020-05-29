@@ -28,3 +28,5 @@ fun isCollectSkillTree(alphabetArr: Array<Int?>, skill: String): Boolean {
     }
     return true
 }
+
+//https://programmers.co.kr/learn/courses/30/lessons/49993
