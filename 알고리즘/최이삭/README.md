@@ -37,3 +37,16 @@
   + completion을 순회하면서 Object에서 completion의 사람 이름을 확인 후 감산.
 
   + value가 0이 된 key는 삭제하고 남아있는 key가 정답이 됨.
+
+
+# 2020/05/29
+
+[소스코드](./SkillTree.js)
+
++ 찍을 수 있는 스킬트리 찾기.
+
+  + skill_trees에서 skill에 있는 순서에 맞게 인덱스를 부여함
+
+  + skill_trees를 순회 시 인덱스가 0에서 부터 1씩 증가하는 꼴이 아니면 flag를 false로 설정하여 답이 아님을 알림
+
+  + skill_trees를 순회 하면서 현재 skill_trees[i]의 값이 최대 인덱스라면 종료 후 answer 증가
