@@ -3,7 +3,7 @@
 # 알고리즘 스터디
 
 ## 20.05.30 ~ 20.06.01
-## 스킬트리(https://programmers.co.kr/learn/courses/30/lessons/42579)
+## (https://programmers.co.kr/learn/courses/30/lessons/42579)
 #### 권하경의 문제
 ### 문제설명
 
