@@ -3,7 +3,7 @@ import java.util.*
 fun solution(genres: Array<String>, plays: IntArray): IntArray
     = getResult(getInputData(genres, plays))
 
-fun getInputData(genres: Array<String>, plays: IntArray) : HashMap<String, Pair<Int, TreeSet<Pair<Int, Int>>>> {
+fun getInputData(genres: Array<String>, plays: IntArray) : Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>> {
     val genreMap = HashMap<String, Pair<Int, TreeSet<Pair<Int, Int>>>>()
     val sorting: (Pair<Int, Int>, Pair<Int, Int>) -> Int = { a, b ->
         if (a.first.compareTo(b.first) == 0) b.second.compareTo(a.second) else a.first.compareTo(b.first)
@@ -22,7 +22,7 @@ fun getInputData(genres: Array<String>, plays: IntArray) : HashMap<String, Pair<
     return genreMap
 }
 
-fun getResult(genreMap : HashMap<String, Pair<Int, TreeSet<Pair<Int, Int>>>>) : IntArray {
+fun getResult(genreMap : Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>>) : IntArray {
     val array = arrayListOf<Int>()
     genreMap.values.sortedBy {// 장르별 재생횟수 총합을 기준으로 정렬
         it.first
