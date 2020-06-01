@@ -1,5 +1,48 @@
 ## algorithm workspace
 
+# 2020/06/01
+[소스코드(Javascript)](./2020-06-01/solution.js)
+
+- url : https://programmers.co.kr/learn/courses/30/lessons/42579
+
+- 설명 : 대충 게시판 카테고리별 인기글 2개씩 뽑는거랑 같은 알고리즘   
+
+- 풀이 :   
+```javascript   
+1  const DownSortGenre = (a, b) => b[1] - a[1];
+2  const DownSortMusic = (a, b) => b.plays - a.plays;
+3
+4  function solution(genres, plays) {
+5    let answer = [];
+6    const genresCount = new Map();
+7    const musics = [];
+8
+9    genres.forEach((genre, idx) => {
+10     if (genresCount.get(genre)) {
+11       genresCount.set(genre, genresCount.get(genre) + plays[idx]);
+12       musics[genre].push({ idx, plays: plays[idx] });
+13     } else {
+14       genresCount.set(genre, plays[idx]);
+15       musics[genre] = [{ idx, plays: plays[idx] }]; // [classic: [{idx: 1, plays: 150}, ...]]
+16     }
+17   });
+18   // [...genresCount]는 Map을 배열로 변환. [['classic', 1450], ['pop', 600]]
+19   [...genresCount].sort(DownSortGenre).forEach(item => {
+20     answer = answer.concat(musics[item[0]].sort(DownSortMusic).map(x => x.idx).slice(0, 2));
+21   });
+22
+23   return answer;
+24 }
+```   
+1. 찐해쉬멥(`genresCount`)에는 장르별 plays를 누적 카운트 한다.  
+2. 배열로 구현한 짭해쉬맵(`musics`)에는 장르별로 노래의 index와 plays를 객체로 저장한다.
+    > [classic: [{idx: 1, plays: 150}, {idx: 3, plays: 800}], ...]`
+3. `genresCount`를 배열로 만들고 카운트를 기준으로 내림차순 정렬을 한 배열을 만든다.  
+4. 위에서 만든 배열을 순회하면서 `musics`에서 장르별로 배열을 추출한다.  
+5. 추출한 배열을 plays 기준으로 내림차순 정렬한 배열을 만들고 그 배열에서 idx를 추출한 배열을 만든다.  
+6. 위에서 만들어진 배열에서 2 이상 index를 자르고 answer 배열에 이어 붙인다.  
+7. 4~6을 반복한다.
+
 # 2020/05/29
 [소스코드(Javascript)](./2020-05-29/solution.js)
 - 문제 : 주어진 선행 스킬(문자) 순서(문자열)에 맞는 스킬트리(문자열)의 개수를 구해라.  
