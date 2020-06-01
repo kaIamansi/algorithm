@@ -9,8 +9,8 @@ fun solution(genres: Array<String>, plays: IntArray): IntArray = getResult(getIn
 fun getInputData(genres: Array<String>, plays: IntArray): Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>> {
     val genreMap = HashMap<String, Pair<Int, TreeSet<Pair<Int, Int>>>>()
 
-    for (i in plays.indices) {
-        genreMap[genres[i]] = calculateTotalPlayCount(genreMap, genres[i], plays[i]).apply { playCountIntoGenre(plays[i], i) }
+    plays.indices.forEach {
+        genreMap[genres[it]] = calculateTotalPlayCount(genreMap, genres[it], plays[it]).apply { playCountIntoGenre(plays[it], it) }
     }
 
     return genreMap
