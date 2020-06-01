@@ -1,4 +1,4 @@
-# 20/05/27
+# 20/05/28
 - 정답 코드
 ```python
 def solution(participant, completion):
