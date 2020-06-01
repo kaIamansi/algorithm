@@ -25,8 +25,8 @@ fun getInputData(genres: Array<String>, plays: IntArray) : Map<String, Pair<Int,
 fun getResult(genreMap : Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>>) : IntArray {
     val array = arrayListOf<Int>()
     genreMap.values.sortedBy {// 장르별 재생횟수 총합을 기준으로 정렬
-        it.first
-    }.asReversed().forEach {
+        it.first * -1
+    }.forEach {
         it.second.pollLast()?.apply {
             array.add(this.second)
         }
@@ -36,3 +36,5 @@ fun getResult(genreMap : Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>>) : IntA
     }
     return array.toIntArray()
 }
+
+// https://programmers.co.kr/learn/courses/30/lessons/42579
