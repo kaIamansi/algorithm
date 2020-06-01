@@ -1,5 +1,86 @@
 # algorithm workspace
 
+## 20/05/30
+
+```
+function solution(genres, plays) {
+  var answer = [];
+  let sortA = [];
+  let arr = [];
+
+  const map = new Map();
+  
+  for(let i=0;i<genres.length;i++){
+    if(map.has(genres[i])){
+      map.set(genres[i],(map.get(genres[i])+plays[i]));
+    }else{
+      map.set(genres[i],plays[i]);
+    }
+  }
+  for (const entry of map) {
+    sortA.push(entry);
+  }
+  for (let i = 0; i < plays.length; i++) {
+    arr.push([i,plays[i]]);
+  }
+  sortA.sort(com);
+  arr.sort(com);
+
+  sortA.forEach(element=>{
+    let num=0;
+    for(let i=0;i<arr.length;i++){
+      if(genres[arr[i][0]]==element[0]){
+        num++;
+        answer.push(arr[i][0]);
+        if(num==2){
+          break;
+        }
+      }
+    }
+  });
+  return answer;
+}
+
+function com(a,b){
+  return b[1]-a[1];
+}
+```
+
+### 풀이
+
+1. map으로 장르와 장르 총합을 묶는다.
+2. map을 배열로 변경해 정렬한다. -> sortA
+3. plays를 인덱스와 묶고 정렬한다. -> arr
+4. sortA와 장르가 같은 arr를 찾아 answer에 인덱스를 넣는다.
+
+## 20/05/29
+
+```
+function solution(skill, skill_trees) {
+  let answer=0;
+  skill_trees.forEach(element => {
+    let index=0;
+    for(let i in element){
+      if(element[i]==skill[index])  index++;
+      else if(element[i]!=skill[index]&&skill.includes(element[i]))  break;
+      if(i==element.length-1||index==skill.length) {
+        answer++;
+        break;
+      }
+    }
+  });
+  return answer;
+}
+
+```
+
+
+### 풀이
+
+1. 선행스킬 순서가 맞으면 index를 하나씩 늘리고 선행스킬 순서가 틀리면 break문으로 빠져나간 다음 다시 돈다.
+2. index가 skill 길이와 같거나 i가 element길이와 같으면 answer값을 하나씩 늘린다. 
+
+
 ## 20/05/28
 
 - js
