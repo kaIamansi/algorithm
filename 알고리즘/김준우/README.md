@@ -1,5 +1,33 @@
 ## algorithm workspace
 
+## 20/06/01
+
+[소스코드](./bestAlbum.js)
+
+### 풀이
+
+- sum 함수: arr를 받아서 모든 인자값을 더한 값을 return.
+- findIndex 함수: arr에서 find인자의 index번호를 return.
+
+1. `newGenres`를 만듬. -> genres에 따른 plays의 해쉬맵.
+
+```
+genres: ["classic", "pop", "classic", "classic", "pop"]
+plays: [500, 600, 150, 800, 2500]
+
+result: {
+  classic: [ 800, 500, 150 ],
+  pop: [ 2500, 600 ]
+}
+```
+
+2. 해쉬 장르의 plays를 정렬.
+3. 각 장르의 총 play 횟수를 더해서 `Array<{ genres: 장르, count: 총 횟수 }>`배열(rank)에 담음.
+4. `rank`를 총 play횟수 순서대로 정렬
+5. plays배열의 index번호를 return해야하기 떄문에 plays배열에서 인덱스 번호를 구해서 리턴함.
+
+---
+
 ## 20/05/29
 
 ```javascript
