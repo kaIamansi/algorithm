@@ -10,7 +10,7 @@ fun getInputData(genres: Array<String>, plays: IntArray): Map<String, Pair<Int, 
     val genreMap = HashMap<String, Pair<Int, TreeSet<Pair<Int, Int>>>>()
 
     plays.indices.forEach {
-        genreMap[genres[it]] = calculateTotalPlayCount(genreMap, genres[it], plays[it]).apply { playCountIntoGenre(plays[it], it) }
+        genreMap[genres[it]] = calculateTotalPlayCount(genreMap[genres[it]], plays[it]).apply { playCountIntoGenre(plays[it], it) }
     }
 
     return genreMap
@@ -20,26 +20,36 @@ fun getResult(genreMap: Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>>): IntArr
     val array = arrayListOf<Int>()
 
     genreMap.values.sortedBy {
-        it.first.toNagative()
+        it.playCount.nagative
     }.forEach {
-        it.second addLastInto array
-        it.second addLastInto array
+        it.treeSet addLastInto array
+        it.treeSet addLastInto array
     }
 
     return array.toIntArray()
 }
 
-fun calculateTotalPlayCount(genreMap: HashMap<String, Pair<Int, TreeSet<Pair<Int, Int>>>>, genre: String, playCount: Int): Pair<Int, TreeSet<Pair<Int, Int>>>
-    = if (genreMap.containsKey(genre)) {
-        genreMap[genre]!!.first + playCount to genreMap[genre]!!.second
+fun calculateTotalPlayCount(genrePair: Pair<Int, TreeSet<Pair<Int, Int>>>?, playCount: Int): Pair<Int, TreeSet<Pair<Int, Int>>>
+    = if (genrePair!=null) {
+        genrePair.totalPlayCount + playCount to genrePair.treeSet
     } else {
         playCount to TreeSet(sorting)
     }
 
 
-fun Pair<Int, TreeSet<Pair<Int, Int>>>.playCountIntoGenre(playCount: Int, index: Int) = this.second.add(playCount to index)
+val Pair<Int, TreeSet<Pair<Int, Int>>>.totalPlayCount : Int
+    get() = this.first
 
-fun Int.toNagative() = this * -1
+val Pair<Int, TreeSet<Pair<Int, Int>>>.treeSet : TreeSet<Pair<Int, Int>>
+    get() = this.second
+
+val Pair<Int, TreeSet<Pair<Int, Int>>>.playCount : Int
+    get() = this.first
+
+val Int.nagative : Int
+    get() = this * -1
+
+fun Pair<Int, TreeSet<Pair<Int, Int>>>.playCountIntoGenre(playCount: Int, index: Int) = this.second.add(playCount to index)
 
 infix fun TreeSet<Pair<Int, Int>>.addLastInto(array : ArrayList<Int>) = array.addNullableInt(this.pollLast()?.second)
 
