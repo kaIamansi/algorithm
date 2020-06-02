@@ -1,40 +1,29 @@
 import java.util.*
 
-fun main() {
-    val board = arrayOf(intArrayOf(0, 0, 0, 0, 0), intArrayOf(0, 0, 1, 0, 3), intArrayOf(0, 2, 5, 0, 1), intArrayOf(4, 2, 4, 4, 2), intArrayOf(3, 5, 1, 3, 1))
-    val moves = intArrayOf(1, 5, 3, 5, 1, 2, 1, 4)
-    println(solution(board, moves))
-}
-
 fun solution(board: Array<IntArray>, moves: IntArray): Int {
     val length = board.size
-    val stack : Stack<Int> = Stack()
+    val stack: Stack<Int> = Stack()
     var result = 0
 
-    val topIndexArray = buildTopIndexArray(length).apply {
-        for (i in 0 until length) {
-            this[i] = getTopIndex(board, i, 0, length - 1)
-        }
-    }
+    val topIndexArray = buildTopIndexArray(length).getTopIndexArray(board, length)
 
     moves.map { it - 1 }.forEach {
-        if(topIndexArray[it] < length) {
-            val value = board[topIndexArray[it]][it]
-            board[topIndexArray[it]][it] = 0
-            topIndexArray[it]++
-            if (stack.peek == value) {
-                result += 2
-                stack.pop()
-            } else {
-                stack.push(value)
-            }
-        }
+        result += board.pull(topIndexArray, length, it).getPointOrPush(stack)
     }
     return result
 }
 
-fun buildTopIndexArray(size: Int) = IntArray(size) { size - 1 }
+// 배열 초기화 함수 (가장 높이 있는 인형의 위치를 담을 배열)
+fun buildTopIndexArray(size: Int) = IntArray(size)
 
+// board의 각 열에 가장 높이 있는 인형을 찾기 위한 함수.
+fun IntArray.getTopIndexArray(board: Array<IntArray>, length: Int) = this.apply {
+    this.indices.forEach {
+        this[it] = getTopIndex(board, it, 0, length - 1)
+    }
+}
+
+// board의 각 열에서 가장 높은 인형의 위치를 찾기 위한 이진 탐색 재귀함수.
 fun getTopIndex(board: Array<IntArray>, index: Int, left: Int, right: Int): Int {
     val mid = (left + right) / 2
     return if (board[mid][index] > 0) {
@@ -46,5 +35,29 @@ fun getTopIndex(board: Array<IntArray>, index: Int, left: Int, right: Int): Int 
     }
 }
 
-val Stack<Int>.peek : Int
-    get() = if(this.size==0) -1 else this.peek()
+// board에서 인형을 뺀 후 인형의 종류를 반환하는 함수
+fun Array<IntArray>.pull(topIndexArray: IntArray, length: Int, move: Int): Int {
+    if (topIndexArray[move] >= length) return 0
+    val value = this[topIndexArray[move]][move]
+    topIndexArray[move]++
+    return value
+}
+
+// 인형을 뺀 후, 점수를 올릴지 혹은 스택에 값을 넣을지를 결정하는 함수.
+fun Int.getPointOrPush(stack: Stack<Int>): Int =
+        if (stack.peek == this) { // 스택의 최상위의 인형과 방금 뽑은 인형이 같으면 스택에서 pop연산을 한 후, 2점을 추가함.
+            stack.pop()
+            2
+        } else { // 스택의 최상위의 인형과 다른 경우, 스택에 push함. (인형이 뽑히지 않았을 경우, 아무런 작업을 하지 않음.)
+            stack.pushIfNotNagative(this)
+            0
+        }
+
+// 인형의 종류가 -1이 아닐 경우에 stack에 push함.
+fun Stack<Int>.pushIfNotNagative(value: Int): Int = if (value > 0) this.push(value) else 0
+
+// 스택에서 pop연산을 함. 비었을 경우 -1 반환.
+val Stack<Int>.peek: Int
+    get() = if (this.size == 0) -1 else this.peek()
+
+//https://programmers.co.kr/learn/courses/30/lessons/64061

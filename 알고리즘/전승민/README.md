@@ -1,5 +1,42 @@
 ## algorithm workspace
 
+# 2020/06/02
+
+[소스코드(Kotlin)](./clawMachineGame/src/clawMachineGame.kt)
+
++ board에서 인형을 뽑아 stack에 넣고, stack에 두 개의 같은 인형이 들어가면 2점을 획득. 총 점수를 구하는 문제.
+
+```kotlin
+fun solution(board: Array<IntArray>, moves: IntArray): Int {
+    val length = board.size
+    val stack: Stack<Int> = Stack()
+    var result = 0
+
+    val topIndexArray = buildTopIndexArray(length).getTopIndexArray(board, length)
+
+    moves.map { it - 1 }.forEach {
+        result += board.pull(topIndexArray, length, it).getPointOrPush(stack)
+    }
+    return result
+}
+```
+
+### 풀이
+
+1. 각 열의 인형의 최고 높이를 구해 배열에 저장함. (이진 탐색 이용.)
+2. moves를 순회하며 각 열의 최고 높이에서 인형을 꺼낸 후, 최고 높이값을 1 낮춤.
+3. 꺼낸 인형은 스택에서 꺼내 값을 비교해 같다면 2점을 추가, 다르면 스택에 push함.
+
+### 시간복잡도
+
++ O(nlogn)
+  + buildTopIndexArray() : 배열생성
+  + getTopIndexArray() : O(nlogn) (이진 탐색 n번 시행.)
+  + map() : O(n)
+  + forEach() : O(n)
+  + pull() : O(1)
+  + getPointOrPush() : O(1)
+
 # 2020/06/01
 
 [소스코드(Kotlin)](./bestAlbum/src/BestAlbum.kt)
@@ -11,6 +48,19 @@
 1. 장르 이름, 장르 총 재생횟수, 각 노래의 재생횟수와 인덱스를 저장한다. => Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>>. { 장르 이름, ( 장르 총 재생횟수, [ ( 노래의 재생횟수, 인덱스 ) ] ) }
 2. TreeSet 정렬 방식을 정의한다. 노래 재생횟수 오름차순, 같다면 인덱스 내림차순.
 3. 장르 총 재생횟수를 정렬해 가장 재생횟수가 많은 장르부터, 노래의 인덱스를 최대 2개씩 꺼낸다.
+
+### 시간복잡도
+
++ O(nlogn)
+
+  + forEach() : O(n)
+    + caculateTotalPlayCount() : O(logn)
+    + playCountIntoGenre() : O(1)
+
+  + sortBy() : O(nlogn)
+  + forEach() : O(n)
+  + addLastInto() : O(1)
+  + toIntArray() : O(n)
 
 # 2020/05/29
 
