@@ -1,6 +1,6 @@
 # algorithm workspace
 
-## 20/05/30
+## 20/06/02
 ```
 def solution(board, moves):
     answer = 0
