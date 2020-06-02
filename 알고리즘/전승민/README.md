@@ -1,5 +1,34 @@
 ## algorithm workspace
 
+# 2020/06/02
+
+[소스코드(Kotlin)](./clawMachineGame/src/clawMachineGame.kt)
+
++ board에서 인형을 뽑아 stack에 넣고, stack에 두 개의 같은 인형이 들어가면 2점을 획득. 총 점수를 구하는 문제.
+
+```kotlin
+fun solution(board: Array<IntArray>, moves: IntArray): Int {
+    val length = board.size
+    val stack: Stack<Int> = Stack()
+    var result = 0
+
+    val topIndexArray = buildTopIndexArray(length).getTopIndexArray(board, length)
+
+    moves.map { it - 1 }.forEach {
+        result += board.pull(topIndexArray, length, it).getPointOrPush(stack)
+    }
+    return result
+}
+```
+
+### 풀이
+
+1. 각 열의 인형의 최고 높이를 구해 배열에 저장함. (이진 탐색 이용.)
+2. moves를 순회하며 각 열의 최고 높이에서 인형을 꺼낸 후, 최고 높이값을 1 낮춤.
+3. 꺼낸 인형은 스택에서 꺼내 값을 비교해 같다면 2점을 추가, 다르면 스택에 push함.
+
+
+
 # 2020/06/01
 
 [소스코드(Kotlin)](./bestAlbum/src/BestAlbum.kt)
