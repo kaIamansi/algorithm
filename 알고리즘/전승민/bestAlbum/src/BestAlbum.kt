@@ -1,40 +1,58 @@
 import java.util.*
 
-fun solution(genres: Array<String>, plays: IntArray): IntArray
-    = getResult(getInputData(genres, plays))
+val sorting: (Pair<Int, Int>, Pair<Int, Int>) -> Int = { a, b ->
+    if (a.first.compareTo(b.first) == 0) b.second.compareTo(a.second) else a.first.compareTo(b.first)
+}
 
-fun getInputData(genres: Array<String>, plays: IntArray) : Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>> {
+fun solution(genres: Array<String>, plays: IntArray): IntArray = getResult(getInputData(genres, plays))
+
+fun getInputData(genres: Array<String>, plays: IntArray): Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>> {
     val genreMap = HashMap<String, Pair<Int, TreeSet<Pair<Int, Int>>>>()
-    val sorting: (Pair<Int, Int>, Pair<Int, Int>) -> Int = { a, b ->
-        if (a.first.compareTo(b.first) == 0) b.second.compareTo(a.second) else a.first.compareTo(b.first)
-    }
 
-    for (i in plays.indices) {
-        genreMap[genres[i]] = if (genreMap.containsKey(genres[i])) { // 장르정보가 이미 있는경우 장르 총 재생 수 저장
-            genreMap[genres[i]]!!.first + plays[i] to genreMap[genres[i]]!!.second
-        } else { // 해당 장르 데이터가 없을 경우 장르 총 재생 수 저장, TreeSet 초기화
-            plays[i] to TreeSet(sorting)
-        }.apply {// 노래의 재생 수, 인덱스 저장
-            this.second.add(plays[i] to i)
-        }
+    plays.indices.forEach {
+        genreMap[genres[it]] = calculateTotalPlayCount(genreMap[genres[it]], plays[it]).apply { playCountIntoGenre(plays[it], it) }
     }
 
     return genreMap
 }
 
-fun getResult(genreMap : Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>>) : IntArray {
+fun getResult(genreMap: Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>>): IntArray {
     val array = arrayListOf<Int>()
-    genreMap.values.sortedBy {// 장르별 재생횟수 총합을 기준으로 정렬
-        it.first * -1
+
+    genreMap.values.sortedBy {
+        it.playCount.nagative
     }.forEach {
-        it.second.pollLast()?.apply {
-            array.add(this.second)
-        }
-        it.second.pollLast()?.apply {
-            array.add(this.second)
-        } // 값 존재 여부 확인 후 배열에 추가.
+        it.treeSet addLastInto array
+        it.treeSet addLastInto array
     }
+
     return array.toIntArray()
 }
+
+fun calculateTotalPlayCount(genrePair: Pair<Int, TreeSet<Pair<Int, Int>>>?, playCount: Int): Pair<Int, TreeSet<Pair<Int, Int>>>
+    = if (genrePair!=null) {
+        genrePair.totalPlayCount + playCount to genrePair.treeSet
+    } else {
+        playCount to TreeSet(sorting)
+    }
+
+
+val Pair<Int, TreeSet<Pair<Int, Int>>>.totalPlayCount : Int
+    get() = this.first
+
+val Pair<Int, TreeSet<Pair<Int, Int>>>.treeSet : TreeSet<Pair<Int, Int>>
+    get() = this.second
+
+val Pair<Int, TreeSet<Pair<Int, Int>>>.playCount : Int
+    get() = this.first
+
+val Int.nagative : Int
+    get() = this * -1
+
+fun Pair<Int, TreeSet<Pair<Int, Int>>>.playCountIntoGenre(playCount: Int, index: Int) = this.second.add(playCount to index)
+
+infix fun TreeSet<Pair<Int, Int>>.addLastInto(array : ArrayList<Int>) = array.addNullableInt(this.pollLast()?.second)
+
+fun ArrayList<Int>.addNullableInt(number : Int?) = if(number!=null) this.add(number) else false
 
 // https://programmers.co.kr/learn/courses/30/lessons/42579

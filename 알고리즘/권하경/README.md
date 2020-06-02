@@ -28,7 +28,7 @@ def solution(board, moves):
 
 ## 20/05/30
 
-```
+```javascript
 function solution(genres, plays) {
   var answer = [];
   let sortA = [];

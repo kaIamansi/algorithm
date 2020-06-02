@@ -2,6 +2,42 @@
 
 
 
+### 2020.06.01 알고리즘
+
+문제: https://programmers.co.kr/learn/courses/30/lessons/42579
+
+소스코드:
+
+```java
+import java.util.*;
+class Solution {
+	public int[] solution(String[] genres, int[] plays) {
+		int[] answer = {};
+        
+		HashMap<String, Integer> genreHash = new HashMap<String, Integer>();
+		
+		for(int i = 0; i < genres.length; i++) {
+			genreHash.put(genres[i],
+                          genreHash.getOrDefault(genres[i], 0) + plays[i]);
+		}
+		
+		return answer;
+    }
+}
+```
+
+기강이의 풀이 시도:
+
+1. HashMap에 값을 넣었다.
+2. ...
+
+난관:
+
+1. HashMap에 넣은 값을 어떻게 써야할지 모르겠다.
+2. 비교해서 수록하는 방법이 궁금해졌다.
+
+
+
 ### 2020.05.29 알고리즘
 
 문제: https://programmers.co.kr/learn/courses/30/lessons/49993

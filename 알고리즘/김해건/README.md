@@ -1,3 +1,61 @@
+2020-06-01
+-----------
+
+```Javascript
+ffunction solution(genres, plays) {
+    let max = 0;
+    let sum = new Array();
+    let result = new Array();
+    let bestGenres = new Array();
+    let bestPlays = new Array();
+    
+    let filtered = genres.filter((item, index) => genres.indexOf(item) == index);
+    // 장르에서 중복되는 장르를 제거하여 배열 생성
+    
+    for (let i=0; i<filtered.length; i++)
+        sum[i] = 0;
+    // 장르의 수만큼 배열 생성
+    
+    for (let i=0; i<filtered.length; i++)
+        for (let j=0; j<genres.length; j++) 
+            if (filtered[i] == genres[j]) 
+                sum[i] += plays[j];
+    // sum 배열에 장르의 인덱스에 맞춰 재생 수를 저장
+
+    for (let i=0; i<filtered.length; i++) {
+        bestGenres.push(filtered[sum.indexOf(Math.max.apply(null, sum))]);
+        sum.splice(sum.indexOf(Math.max.apply(null, sum)), 1);
+    }
+    // 재생 수가 많은 순으로 장르를 저장
+    
+    for (let i=0; i<bestGenres.length; i++) {
+        for (let j=0; j<genres.length; j++) {
+            if (bestGenres[i] == genres[j] && plays[j] >= max) {
+                result.push(plays.indexOf(plays[j]));
+                max = plays[j];
+            }
+        }
+    }
+    // 재생 수가 많은 순으로 노래의 고유 번호를 result에 저장
+
+    return result;
+}
+```  
+
+### 난관
+- 두 배열을 두고 서로의 인덱스 번호를 공유하면서 문제를 해결하려고 하니 복잡했다.
+- 장르 별로 재생 수가 가장 많은 곡 두 개만 뽑으려는 방법을 어떻게 해야할지 몰라 고민했다.
+    - 2차원 배열로 정렬하여 해결하는 방법을 찾았다.
+
+### 풀이
+1. genres에서 중복되는 것들을 제거하여 장르의 수를 파악했다.
+2. 각 장르의 총 재생 수를 sum 배열에 넣었다.
+3. sum을 바탕으로 재생 수가 많은 순으로 장르를 bestGenres에 저장
+4. 마지막으로 재생 수가 많은 노래 순으로 정렬하려고 했으나 실패하였다.
+
+### 해결하지 못함
+
+
 2020-05-29
 -----------
 
