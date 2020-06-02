@@ -38,3 +38,28 @@ function solution(genres, plays) {
 
     return result;
 }
+
+/* function solution(genres, plays) {
+    let list = [[], []];
+    let totalPlays = new Array();
+    
+    let filtered = genres.filter((item, index) => genres.indexOf(item) == index);
+    // 중복 제거
+    
+    for (let i=0; i<filtered.length; i++) 
+        totalPlays[i] = 0;
+    // 총 재생 수를 담을 배열
+    
+    for (let i=0; i<filtered.length; i++) 
+        for (let j=0; j<genres.length; j++) 
+            if (filtered[i] == genres[j]) 
+                totalPlays[i] += plays[j];
+    // 총 재생 수를 장르에 맞게 생성한 배열
+    
+    for (let i=0; i<filtered.length; i++) 
+        list[i] = filtered[totalPlays.indexOf(Math.max.apply(null, totalPlays))];
+    // 2차원 배열 중 장르를 먼저 정해줌
+    
+    
+    console.log(list[0]);
+}
