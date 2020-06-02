@@ -1,5 +1,44 @@
 ## algorithm workspace
 
+# 2020/06/02
+[소스코드(Javascript)](./2020-06-02/solution.js)
+
+- url : https://programmers.co.kr/learn/courses/30/lessons/42579
+
+- 설명 : 
+
+- 풀이 :  
+```javascript
+1  function solution(board, moves) {
+2    const basket = [];
+3    let result = 0;
+4
+5    moves.forEach(move => {
+6      let v = move-1;
+7      let doll = null;
+8
+9      for(let i = 0; i < board.length; i++) {
+10       if(board[i][v] !== 0)  {
+11         doll = board[i][v];
+12         board[i][v] = 0;
+13         break;
+14       }
+15     }
+16 
+17     if(doll !== null) {
+18       if(basket[basket.length-1] === doll) {
+19         basket.pop();
+20         result += 2;
+21       }
+22       else basket.push(doll);
+23     }
+24   });
+25   return result;
+26 }
+```   
+1. 
+
+
 # 2020/06/01
 [소스코드(Javascript)](./2020-06-01/solution.js)
 
