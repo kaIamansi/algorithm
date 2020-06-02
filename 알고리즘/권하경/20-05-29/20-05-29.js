@@ -5,7 +5,7 @@ function solution(skill, skill_trees) {
     for(let i in element){
       if(element[i]==skill[index])  index++;
       else if(element[i]!=skill[index]&&skill.includes(element[i]))  break;
-      if(i==element.length-1||index==skill.length-1) {
+      if(i==element.length-1||index==skill.length) {
         answer++;
         break;
       }
