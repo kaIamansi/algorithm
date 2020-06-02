@@ -1,8 +1,34 @@
 # algorithm workspace
 
 ## 20/05/30
+```
+def solution(board, moves):
+    answer = 0
+    arr = []
+    for element in moves:
+      for items in board:
+        if items[element-1]:
+          arr.append(items[element-1])
+          items[element-1]=0
+          break
+        
+      if len(arr)>1 and arr[len(arr)-1]==arr[len(arr)-2]:
+        arr.pop()
+        arr.pop()
+        answer+=1
+                
+    return answer*2
 
 ```
+
+### 풀이
+
+1. board가 0이 아닐때 arr에 넣고 만약 arr길이가 1이상, 뒤에서 첫번째와 뒤에서 2번째가 같다면 pop으로 뺀다.
+
+
+## 20/05/30
+
+```javascript
 function solution(genres, plays) {
   var answer = [];
   let sortA = [];
