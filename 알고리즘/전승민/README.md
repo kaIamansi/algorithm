@@ -27,7 +27,15 @@ fun solution(board: Array<IntArray>, moves: IntArray): Int {
 2. moves를 순회하며 각 열의 최고 높이에서 인형을 꺼낸 후, 최고 높이값을 1 낮춤.
 3. 꺼낸 인형은 스택에서 꺼내 값을 비교해 같다면 2점을 추가, 다르면 스택에 push함.
 
+### 시간복잡도
 
++ O(nlogn)
+  + buildTopIndexArray() : 배열생성
+  + getTopIndexArray() : O(nlogn) (이진 탐색 n번 시행.)
+  + map() : O(n)
+  + forEach() : O(n)
+  + pull() : O(1)
+  + getPointOrPush() : O(1)
 
 # 2020/06/01
 
@@ -40,6 +48,19 @@ fun solution(board: Array<IntArray>, moves: IntArray): Int {
 1. 장르 이름, 장르 총 재생횟수, 각 노래의 재생횟수와 인덱스를 저장한다. => Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>>. { 장르 이름, ( 장르 총 재생횟수, [ ( 노래의 재생횟수, 인덱스 ) ] ) }
 2. TreeSet 정렬 방식을 정의한다. 노래 재생횟수 오름차순, 같다면 인덱스 내림차순.
 3. 장르 총 재생횟수를 정렬해 가장 재생횟수가 많은 장르부터, 노래의 인덱스를 최대 2개씩 꺼낸다.
+
+### 시간복잡도
+
++ O(nlogn)
+
+  + forEach() : O(n)
+    + caculateTotalPlayCount() : O(logn)
+    + playCountIntoGenre() : O(1)
+
+  + sortBy() : O(nlogn)
+  + forEach() : O(n)
+  + addLastInto() : O(1)
+  + toIntArray() : O(n)
 
 # 2020/05/29
 

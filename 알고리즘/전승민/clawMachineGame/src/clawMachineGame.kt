@@ -14,7 +14,7 @@ fun solution(board: Array<IntArray>, moves: IntArray): Int {
 }
 
 // 배열 초기화 함수 (가장 높이 있는 인형의 위치를 담을 배열)
-fun buildTopIndexArray(size: Int) = IntArray(size) { size - 1 }
+fun buildTopIndexArray(size: Int) = IntArray(size)
 
 // board의 각 열에 가장 높이 있는 인형을 찾기 위한 함수.
 fun IntArray.getTopIndexArray(board: Array<IntArray>, length: Int) = this.apply {
