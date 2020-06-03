@@ -21,6 +21,10 @@ fun IntArray.putData(left: Int, right: Int) {
 2. 리프 노드를 제외한 모든 노드가 자식 노드로 왼쪽에는 0, 오른쪽에는 1을 가지고 있는 완전 이진 트리 형태이다.
 3. 배열을 이용해 완전이진트리를 구성한다.
 
+### 시간복잡도
++ O(2^n)
+    + 배열의 크기가 2^n-1이기 때문에, 초기화 과정을 거치면 2^n이 됨.
+
 # 2020/06/02
 
 [소스코드(Kotlin)](./clawMachineGame/src/clawMachineGame.kt)
