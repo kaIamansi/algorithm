@@ -57,6 +57,8 @@
 ![](https://res.cloudinary.com/dpxurmkij/image/upload/c_scale,w_390/v1500952178/%EC%A2%85%EC%9D%B4%EC%A0%91%EA%B8%B06_sbn7li.png)  
 따라서 [0,0,1,0,0,1,1]을 return 하면 됩니다.
 
+---
+
 ## 20.06.02
 ## 크레인인형뽑기게임(https://programmers.co.kr/learn/courses/30/lessons/64061)
 #### 최이삭의 문제
