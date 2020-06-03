@@ -1,20 +1,21 @@
+import kotlin.math.pow
 
-fun solution(n: Int): IntArray {
-    val size = (Math.pow(2.toDouble(), n.toDouble())-1).toInt()
-    val answer = IntArray(size)
-    putData(answer, 0, size-1)
-    return answer
+fun solution(n: Int): IntArray =
+        (2.toDouble().pow(n.toDouble()) - 1).toInt().let {
+            IntArray(it).apply {
+                putData(0, it - 1)
+            }
+        }
+
+fun IntArray.putData(left: Int, right: Int) {
+    if (left == right) return
+    val mid = left getMid right
+    this[left getMid mid - 1] = 0
+    this[mid + 1 getMid right] = 1
+    putData(left, mid - 1)
+    putData(mid + 1, right)
 }
 
-fun putData(array : IntArray, left : Int, right : Int ) {
-    if(left==right) return
-    val mid = (left + right) / 2
-    val leftMid = (left + mid-1) / 2
-    val rightMid = (right + mid+1) / 2
-    array[leftMid] = 0
-    array[rightMid] = 1
-    putData(array, left, mid-1)
-    putData(array, mid+1, right)
-}
+infix fun Int.getMid(b: Int) = (this + b) / 2
 
-// [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
+// https://programmers.co.kr/learn/courses/30/lessons/62049
