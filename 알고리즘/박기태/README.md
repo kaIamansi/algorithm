@@ -1,5 +1,25 @@
 ## algorithm workspace
 
+# 2020/06/03  
+[소스코드(Javascript)](./2020-06-03/solution.js)  
+
+- url : https://programmers.co.kr/learn/courses/30/lessons/62049 
+
+- 설명 : 종이를 한방향으로 n번 접는데 생기는 골과 언덕을 각각 1과 0으로 생각하고, 이를 배열로 만든다.
+
+- 풀이 :  
+```javascript
+function solution(n) {
+    let answer = [0, 0, 1]; // 기본값 & 2일때 [0, 0, 1] 반환
+    if (n === 1) return [0]; // 1일때 [0] 반환
+
+    for (let i = 0; i < n - 2; i++)
+        answer = answer.concat(0, answer.map(x => !x | 0).reverse());
+    // 'answer 배열'에 '0'과 'answer에서 0과 1을 반전시키고(map(x => !x | 0)) 뒤집은 배열(reverse())'을 이어 붙여(concat()) answer에 대입
+    return answer;
+}
+```  
+1. 종이접기 공식에 의해  N번 접은 모양을 가운데(0)을 기준으로 왼쪽에 두고, N번 접은 것을 옆방향으로 뒤집어 놓은 모양을 오른쪽에 두면 N+1 접은 모양이 된다.
 
 # 2020/06/02
 [소스코드(Javascript)](./2020-06-02/solution.js)
