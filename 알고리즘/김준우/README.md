@@ -1,5 +1,42 @@
 ## algorithm workspace
 
+## 20/06/03
+
+```js
+function solution(n) {
+  var answer = [];
+
+  for (let i = 0; i < n; i++) {
+    if (i === 0) {
+      answer.push(0);
+    } else {
+      const arr = answer.reverse().map((d) => (d ? 0 : 1));
+      answer.reverse();
+
+      answer = [...answer, 0, ...arr];
+    }
+  }
+
+  return answer;
+}
+```
+
+### 풀이
+
+- 종이접기 규칙
+  절반을 기준으로 한쪽을 reverse하고 0은 1로, 1은 0으로 바꾸면 반대쪽과 같은 값이 나온다.
+
+ex]
+[0,0,1,0,0,1,1]의 중간을 기준으로 왼쪽은 [0,0,1] 오른쪽은 [0,1,1] 이다.
+이 때 오른쪽을 reverse = [1,1,0] ->
+0은 1로, 1은 0으로 = [0,0,1] -> 왼쪽과 동일.
+
+규칙을 이용한 풀이.
+
+시간복잡도 O(n^2)
+
+---
+
 ## 20/06/02
 
 ```js
