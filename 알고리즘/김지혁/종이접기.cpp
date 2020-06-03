@@ -1,8 +1,3 @@
-## algorithm workspace
-# 2020/06/03
-+ 문제: 종이접기
-
-```c++
 #include <string>
 #include <vector>
 #include <iostream>
@@ -29,11 +24,10 @@ vector<int> solution(int n) {
 	}
 	return answer;
 }
-```
 
-### 풀이
-+ n이 1일 때는 0으로 지정
-+ answer을 {0, 0, 1}로 초기화
-+ 3이상이면 
-    1. answer + 0 + !(rewsna)을 arr 에 저장
-    2. answer에 arr 저장 후 반복
+int main(void) {
+	vector<int> arr = solution(3);
+	for (int i = 0; i < arr.size(); i++) {
+		cout << arr[i] << endl;
+	}
+}
