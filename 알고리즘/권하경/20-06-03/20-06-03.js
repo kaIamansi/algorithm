@@ -10,7 +10,7 @@ function sort(answer,n) {
     return answer;
   }else{
     answer = sort(answer,--n);
-    let b = answer.map(x=>parseInt((x-1)*-1));
+    let b = answer.map(x=>(x-1)*-1);
     b.reverse();
     
     answer.push(0);

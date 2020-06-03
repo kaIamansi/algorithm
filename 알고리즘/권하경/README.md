@@ -51,8 +51,8 @@ function sort(answer,n) {
     answer.push(0);
     return answer;
   }else{
-    answer = sort(answer,--n); //재귀
-    let b = answer.map(x=>parseInt((x-1)*-1));
+    answer = sort(answer,--n);
+    let b = answer.map(x=>(x-1)*-1);
     b.reverse();
     
     answer.push(0);
@@ -70,7 +70,7 @@ function sort(answer,n) {
 - js 
 2. b 요소들을 -1하고 *-1를 해주면 0과 1이 바뀐다.
 
-<strong>js에서 parseInt를 해주는 이유는 0*-1을 하면 -0이 나온다.</strong>
+<strong> 0*-1을 하면 -0이 나온다. 근데 0과 -0이 같은거라해서 저렇게 나와도 정답처리 된다. ㅁㅊ</strong>
 
 3. b를 반전시키고 answer에 함친다. 
 
