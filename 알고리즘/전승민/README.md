@@ -1,5 +1,26 @@
 ## algorithm workspace
 
+# 2020/06/03
+[소스코드(Kotlin)](./origami/src/origami.kt)
++ 종이를 왼쪽으로 n번 접고 폈을 때, 접힌 부분의 모양(방향)을 반환하는 문제. 안쪽으로 접히면 0, 바깥으로 접히면 1.
+
+```kotlin
+// 첫 호출 시 left : 0, right : 2^n-1
+fun IntArray.putData(left: Int, right: Int) {
+    if (left == right) return
+    val mid = left getMid right
+    this[left getMid mid - 1] = 0
+    this[mid + 1 getMid right] = 1
+    putData(left, mid - 1)
+    putData(mid + 1, right)
+}
+```
+
+### 풀이
+1. 규칙을 찾는다. n번째 접었을 때, n+1번째는 n번째를 기준으로 왼쪽에는 0, 오른쪽에는 1 방향으로 접힌다.
+2. 리프 노드를 제외한 모든 노드가 자식 노드로 왼쪽에는 0, 오른쪽에는 1을 가지고 있는 완전 이진 트리 형태이다.
+3. 배열을 이용해 완전이진트리를 구성한다.
+
 # 2020/06/02
 
 [소스코드(Kotlin)](./clawMachineGame/src/clawMachineGame.kt)
