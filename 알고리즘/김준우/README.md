@@ -1,5 +1,45 @@
 ## algorithm workspace
 
+## 20/06/02
+
+```js
+function solution(board, moves) {
+  const boardCopyed = [...board];
+  const basket = [];
+  let answer = 0;
+
+  moves.forEach((v) => {
+    if (boardCopyed[boardCopyed.length - 1][v - 1] === 0) return false;
+
+    boardCopyed.some((arr, i) => {
+      if (arr[v - 1] === 0) return false;
+
+      if (basket.length > 0) {
+        if (basket[basket.length - 1] === arr[v - 1]) {
+          answer += 2;
+          basket.pop();
+          boardCopyed[i][v - 1] = 0;
+          return true;
+        }
+      }
+
+      basket.push(arr[v - 1]);
+      boardCopyed[i][v - 1] = 0;
+      return true;
+    });
+  });
+
+  return answer;
+}
+```
+
+### 풀이
+
+1. moves에 for문을 돌고 안에서 board에 for문을 돔
+2. 검사해서 스택처럼 넣고 뺴고 더하고 함
+
+---
+
 ## 20/06/01
 
 [소스코드](./bestAlbum.js)
