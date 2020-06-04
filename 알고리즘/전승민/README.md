@@ -3,11 +3,6 @@
 # 2020/06/04
 [소스코드(Kotlin)](./wordTranslate/wordTranslate.kt)
 + 기존 문자열에서 단어를 한 글자씩 변환해 목표 문자열을 만들 수 있는 최소한의 횟수를 반환하는 문제.
-
-
-# 2020/06/03
-[소스코드(Kotlin)](./origami/src/origami.kt)
-+ 종이를 왼쪽으로 n번 접고 폈을 때, 접힌 부분의 모양(방향)을 반환하는 문제. 안쪽으로 접히면 0, 바깥으로 접히면 1.
 ```kotlin
 val infinity = 987654321
 fun dps(cur: String, target: String, visit: Array<Boolean>, words: Array<String>): Int {
@@ -32,6 +27,9 @@ fun dps(cur: String, target: String, visit: Array<Boolean>, words: Array<String>
 
 ### 시간복잡도
 + 단어 길이 s, 단어 개수 n개에 대한 시간복잡도는 O(s * n^2이다.) 
+# 2020/06/03
+[소스코드(Kotlin)](./origami/src/origami.kt)
++ 종이를 왼쪽으로 n번 접고 폈을 때, 접힌 부분의 모양(방향)을 반환하는 문제. 안쪽으로 접히면 0, 바깥으로 접히면 1.
 
 ```kotlin
 // 첫 호출 시 left : 0, right : 2^n-1
