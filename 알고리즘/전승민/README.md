@@ -1,8 +1,37 @@
 ## algorithm workspace
 
+# 2020/06/04
+[소스코드(Kotlin)](./wordTranslate/wordTranslate.kt)
++ 기존 문자열에서 단어를 한 글자씩 변환해 목표 문자열을 만들 수 있는 최소한의 횟수를 반환하는 문제.
+
+
 # 2020/06/03
 [소스코드(Kotlin)](./origami/src/origami.kt)
 + 종이를 왼쪽으로 n번 접고 폈을 때, 접힌 부분의 모양(방향)을 반환하는 문제. 안쪽으로 접히면 0, 바깥으로 접히면 1.
+```kotlin
+val infinity = 987654321
+fun dps(cur: String, target: String, visit: Array<Boolean>, words: Array<String>): Int {
+    if (cur == target) {
+        return 0
+    }
+    var minimum = infinity
+    words.indices.forEach {
+        if (!visit[it]) {
+            visit[it] = true
+            minimum = if (cur.isOneLetterDiff(words[it])) min(dps(words[it], target, visit, words) + 1, minimum) else minimum
+            visit[it] = false
+        }
+    }
+    return minimum
+}
+```
+### 풀이
+1. DFS를 이용해 구현. 주어진 words 내의 각 요소부터 시작해 DFS를 진행함. 
+2. 목표 문자열에 도달할 수 없는 경우나 변환할 수 없는 경우에는 infinity(987654321)를 반환한다.
+3. infinity가 반환됐을 경우, 0을 반환하고, 아닐 경우에는 최소 경로의 변환 횟수를 반환하게 됨.
+
+### 시간복잡도
++ 단어 길이 s, 단어 개수 n개에 대한 시간복잡도는 O(s * n^2이다.) 
 
 ```kotlin
 // 첫 호출 시 left : 0, right : 2^n-1
