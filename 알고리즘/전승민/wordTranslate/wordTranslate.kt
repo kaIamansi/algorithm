@@ -1,6 +1,6 @@
 import kotlin.math.min
 
-val infinity = 987654321
+const val infinity = 987654321
 
 fun solution(begin: String, target: String, words: Array<String>): Int
     = dps(begin, target, Array(words.size) { false }, words).let {
@@ -29,9 +29,4 @@ fun String.isOneLetterDiff(other: String): Boolean {
     }
     return this.length - 1 == count
 }
-
-val String.indices
-    get() = IntRange(0, this.length - 1)
-
-val <T> Array<T>.indices
-    get() = IntRange(0, this.size - 1)
+// https://programmers.co.kr/learn/courses/30/lessons/43163
