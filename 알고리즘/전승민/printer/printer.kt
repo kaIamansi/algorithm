@@ -1,9 +1,5 @@
 import java.util.*
 
-fun main() {
-    println(solution(intArrayOf(1,9,9), 0))
-}
-
 fun solution(priorities: IntArray, location: Int): Int {
     val queue = Array<Queue<Int>>(9) { LinkedList<Int>() }
     priorities.forEachIndexed {index: Int, it: Int ->
