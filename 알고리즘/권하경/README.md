@@ -1,5 +1,34 @@
 # algorithm workspace
 
+## 20/06/08
+```
+function solution(priorities, location) {
+  var answer = 0;
+  while(true){
+    if(priorities[0]!=Math.max(...priorities)){      
+      priorities.push(priorities.shift());
+      if(location==0) location = priorities.length-1;
+      else location--;
+    }else{
+      if(location==0){
+        return ++answer;
+      }else{
+        answer++;
+        priorities.shift();
+        location--;
+      }
+    }
+  }
+}
+```
+### 풀이
+
+1. priorities의 0번째가 가장 큰 수가 아니면 빼서 뒤로 넣는다.
+
+2. 이때 location이 0이면 length-1로 하고 아니면 -1을 한다.
+
+3. 만약 가장 큰 수라면 location이 0이라면 return 하고 아니면 answer+1을 하고 배열에 빼준다음 location-1을 한다.
+
 ## 20/06/03
 - java
 ```
@@ -70,7 +99,7 @@ function sort(answer,n) {
 - js 
 2. b 요소들을 -1하고 *-1를 해주면 0과 1이 바뀐다.
 
-<strong> 0*-1을 하면 -0이 나온다. 근데 0과 -0이 같은거라해서 저렇게 나와도 정답처리 된다. ㅁㅊ</strong>
+<strong> 0*-1을 하면 -0이 나온다. 근데 0과 -0이 같은거라해서 저렇게 나와도 정답처리 된다.</strong>
 
 3. b를 반전시키고 answer에 함친다. 
 
