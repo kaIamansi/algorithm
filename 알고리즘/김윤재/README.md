@@ -1,5 +1,67 @@
 ## algorithm workspace
 
+### 2020-06-08
+#### [프린터]
+```java
+import java.util.LinkedList;
+import java.util.Optional;
+import java.util.Queue;
+
+
+public class Solution {
+    private static int MaxQueueElement(Queue<Integer> queue){
+        Optional<Integer> max = queue.stream()
+                .max(Comparable::compareTo);
+
+        if(max.isPresent()){
+            return max.get();
+        }
+        return -1;
+    }
+
+    public static int solution(int[] priorities, int location) {
+        int answer = 0;
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        for (int priority : priorities) {
+            queue.offer(priority);
+        }
+
+        while (!queue.isEmpty()) {
+            int peekQueue = queue.peek();
+            int maxElement = MaxQueueElement(queue);
+
+            if (location == 0 && peekQueue == maxElement) {
+                answer += 1;
+                return answer;
+
+            } else if (peekQueue == maxElement) {
+                queue.poll();
+                answer += 1;
+
+            } else {
+                int pollQueue = queue.poll();
+                queue.offer(pollQueue);
+                if (location == 0) {
+                    location = queue.size();
+                }
+            }
+
+            location--;
+        }
+
+        return answer;
+    }
+}
+```
+#### 풀이
+- location을 계속 감소시키면서 반복문을 돈다. 
+- pop한 원소가 가장 클 때마다 해당 원소를 삭제하고 answer의 값을 1 증가시킨다.
+  - 가장 크지 않은 경우 맨 뒤로 돌려보낸다.
+- location이 0이고 queue에서 가장 큰 값이면 answer 값을 반환한다.
+
+
 ### 2020-05-29
 #### [스킬트리](https://programmers.co.kr/learn/courses/30/lessons/49993) 
 ```python
