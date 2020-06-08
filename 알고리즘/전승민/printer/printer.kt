@@ -14,7 +14,6 @@ fun solution(priorities: IntArray, location: Int): Int {
     queue.indices.forEach {
         while(queue[8-it].size>0) {
             val value = queue[8-it].poll()
-            println(value)
             if(index <= value) {
                 array.add(value)
                 index = value
