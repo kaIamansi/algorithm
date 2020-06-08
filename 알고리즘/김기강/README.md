@@ -1,6 +1,52 @@
 ## algorithm workspace
 
 
+
+### 2020.06.03 알고리즘
+
+문제: https://programmers.co.kr/learn/courses/30/lessons/64061
+
+소스코드:
+
+```java
+class Solution {
+    public int[] solution(int n) {
+	int len = (int)Math.pow(2, n)-1;    //double 값이라 (int)~
+	int[] answer = new int[len];
+	
+	String ansS = "0";
+	String updown;
+	for(int i = 2; i <= n; i++) {
+		updown = "1";
+		StringBuilder space = new StringBuilder("0");
+		for(int j = 0; j < ansS.length(); j++) {
+			space.append(ansS.charAt(j) + updown);
+			updown = updown.equals("1") ? "0" : "1";
+		}
+		ansS = space.toString();
+	}
+	
+	for(int i = 0; i < ansS.length(); i++) {    //int로 바꿔서 넣어줌
+		answer[i] = ansS.charAt(i) - 48;    //char 0 == int 48, char 1 == int 49
+        }
+	
+	return answer;
+	}
+}
+```
+
+기강이의 풀이:
+
+1. answer의 길이를 2의 n승-1로 둔다.
+2. space에 ansS의 값을 기준으로 맞는 0 혹은 1을 넣어준다.
+3. 그것을 ansS에 넣어준다.
+4. 종이를 n번만큼 접었으면, answer[i]에 넣어준다. 
+
+
+
+
+
+
 ### 2020.06.02 알고리즘
 
 문제: https://programmers.co.kr/learn/courses/30/lessons/64061

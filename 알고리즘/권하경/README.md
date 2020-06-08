@@ -1,5 +1,81 @@
 # algorithm workspace
 
+## 20/06/03
+- java
+```
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Collections;
+
+class Solution {
+    public int[] solution(int n) {
+        List<Integer> answer = sort(new ArrayList(),n);
+        int[] arr = new int[answer.size()];
+        for(int i=0;i<arr.length;i++){
+            arr[i] = answer.get(i);
+        }
+        return arr;
+    }
+    public static List sort(List<Integer> answer,int n) {
+        if(n==1) {
+            answer.add(0);
+            return answer;
+        }else{
+            answer = sort(answer,--n);
+            List<Integer> b = new ArrayList();
+            b.addAll(answer);
+            answer.add(0);
+            for (int i=0;i<b.size();i++) {
+                if(b.get(i)==1) b.set(i,0);
+                else b.set(i,1);
+            }
+            Collections.reverse(b);
+            answer.addAll(b);
+        }
+        return answer;
+    }
+}
+
+```
+- js
+```
+function solution(n) {
+  var answer = [];
+  answer = sort(answer,n);
+  return answer;
+}
+
+function sort(answer,n) {
+  if(n==1){
+    answer.push(0);
+    return answer;
+  }else{
+    answer = sort(answer,--n);
+    let b = answer.map(x=>(x-1)*-1);
+    b.reverse();
+    
+    answer.push(0);
+    return answer.concat(b);
+  }
+}
+```
+### 풀이
+
+1. b에 지금까지의 answer 요소를 넣고 answer에 0을 push 한다.
+
+- Java
+2. b에서 0을 1로, 1을 0으로 바꾼다. 
+
+- js 
+2. b 요소들을 -1하고 *-1를 해주면 0과 1이 바뀐다.
+
+<strong> 0*-1을 하면 -0이 나온다. 근데 0과 -0이 같은거라해서 저렇게 나와도 정답처리 된다. ㅁㅊ</strong>
+
+3. b를 반전시키고 answer에 함친다. 
+
+4. 재귀가 끝날 때까지 위에 일을 반복한다.
+
 ## 20/06/02
 ```
 def solution(board, moves):
