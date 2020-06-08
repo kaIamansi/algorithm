@@ -1,5 +1,48 @@
 ## algorithm workspace
 
+## 20/06/08
+
+```js
+function solution(priorities, location) {
+  const locationArray = priorities.map((data, index) => ({
+    docs: data,
+    location: index,
+  }));
+
+  let i = 0;
+
+  while (true) {
+    for (let j = i; j < locationArray.length; j++) {
+      if (locationArray[i].docs < locationArray[j].docs) {
+        locationArray.push(...locationArray.splice(i, 1));
+        break;
+      }
+      if (
+        locationArray.length - 1 === j &&
+        locationArray[i].docs >= locationArray[j].docs
+      ) {
+        i++;
+      }
+    }
+
+    if (i === locationArray.length - 1) {
+      break;
+    }
+  }
+
+  return locationArray.findIndex((data) => data.location === location) + 1;
+}
+```
+
+### 풀이
+
+1. 데이터 검사
+2. stack에 푸쉬
+3. 팝도 함
+4. 찾아서 리턴
+
+---
+
 ## 20/06/03
 
 ```js

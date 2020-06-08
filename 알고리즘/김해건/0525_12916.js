@@ -1,18 +1,12 @@
 function solution(s){
-    let count1 = 0, count2 = 0;
+    let lower = s.toLowerCase();
+    let y = 0, p = 0;
     
-    for (var i=0; i<s.length; i++) {
-        if (s.match('y') == s[i] || s.match('Y') == s[i])
-            count1++;
-    }
-    
-    for (var i=0; i<s.length; i++) {
-        if (s.match('p') == s[i] || s.match('P') == s[i])
-            count2++;
-    }
-    
-    if (count1 == count2)
+    y = lower.match(/y/g);
+    p = lower.match(/p/g);
+
+    if(y.length == p.length)
         return true;
-   else 
-       return false;
-}
+    else
+        return false;
+} 

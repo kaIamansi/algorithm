@@ -1,5 +1,65 @@
 ## algorithm workspace
 
+# 2020/06/08
+[소스코드(Kotlin)](./printer/printer.kt)
++ 프린터 큐가 들어오는데, 우선순위에 따라 출력했을때, 원하는 출력물이 몇번째로 출력되는지 반환하는 문제.
+```kotlin
+fun solution(priorities: IntArray, location: Int): Int {
+    val queue = Array<Queue<Int>>(9) { LinkedList<Int>() }
+    priorities.forEachIndexed {index: Int, it: Int ->
+        queue[it-1].offer(index)
+    }
+    var index = 0
+    val array = ArrayList<Int>()
+    queue.indices.forEach {
+        while(queue[8-it].size>0) {
+            val value = queue[8-it].poll()
+            println(value)
+            if(index <= value) {
+                array.add(value)
+                index = value
+            } else {
+                queue[8-it].offer(value)
+            }
+            if(value > queue[8-it].peek() ?: infinity) index = 0
+            if(queue[8-it].size==1) index = 0
+        }
+    }
+    return array.indexOf(location) + 1
+}
+```
++ 풀이
+1. 큐 9개를 만들어 우선순위에 맞게 큐에 삽입.
+2. 마지막 출력 인덱스를 저장하며 큐에서 순서에 맞게 꺼내 배열에 넣음.
+3. 해당 인덱스가 몇 번째인지 반환.
+
+# 2020/06/04
+[소스코드(Kotlin)](./wordTranslate/wordTranslate.kt)
++ 기존 문자열에서 단어를 한 글자씩 변환해 목표 문자열을 만들 수 있는 최소한의 횟수를 반환하는 문제.
+```kotlin
+val infinity = 987654321
+fun dps(cur: String, target: String, visit: Array<Boolean>, words: Array<String>): Int {
+    if (cur == target) {
+        return 0
+    }
+    var minimum = infinity
+    words.indices.forEach {
+        if (!visit[it]) {
+            visit[it] = true
+            minimum = if (cur.isOneLetterDiff(words[it])) min(dps(words[it], target, visit, words) + 1, minimum) else minimum
+            visit[it] = false
+        }
+    }
+    return minimum
+}
+```
+### 풀이
+1. DFS를 이용해 구현. 주어진 words 내의 각 요소부터 시작해 DFS를 진행함. 
+2. 목표 문자열에 도달할 수 없는 경우나 변환할 수 없는 경우에는 infinity(987654321)를 반환한다.
+3. infinity가 반환됐을 경우, 0을 반환하고, 아닐 경우에는 최소 경로의 변환 횟수를 반환하게 됨.
+
+### 시간복잡도
++ 단어 길이 s, 단어 개수 n개에 대한 시간복잡도는 O(s * n^2이다.) 
 # 2020/06/03
 [소스코드(Kotlin)](./origami/src/origami.kt)
 + 종이를 왼쪽으로 n번 접고 폈을 때, 접힌 부분의 모양(방향)을 반환하는 문제. 안쪽으로 접히면 0, 바깥으로 접히면 1.
