@@ -1,6 +1,6 @@
 ## algorithm workspace
 
-# 2020/06/03  
+# 2020/06/08  
 [소스코드(Javascript)](./2020-06-08/solution.js)  
 
 - url : https://programmers.co.kr/learn/courses/30/lessons/42587  
