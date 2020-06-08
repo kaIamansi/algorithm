@@ -227,7 +227,6 @@ function solution(s) {
 
 ```Javascript
 function solution(s){
-<<<<<<< HEAD
     let lower = s.toLowerCase();
     let y = 0, p = 0;
     
@@ -238,38 +237,13 @@ function solution(s){
         return true;
     else
         return false;
-=======
-    let count1 = 0, count2 = 0;
-
-    for (var i=0; i<s.length; i++) {
-        if (s.match('y') == s[i] || s.match('Y') == s[i])
-            count1++;
-    }
-
-    for (var i=0; i<s.length; i++) {
-        if (s.match('p') == s[i] || s.match('P') == s[i])
-            count2++;
-    }
-
-    if (count1 == count2)
-        return true;
-   else
-       return false;
->>>>>>> f3086e7a373e0ab3c4348163bed3d2484344baa7
 }
 ```
 
 ### 풀이
-<<<<<<< HEAD
 1. toLowerCase를 이용해 문자열을 모두 소문자로 만든다.
 2. match를 이용해 y와 p를 찾고 각각의 변수에 저장한다. 
 2. 그 후 y와 p의 배열 길이를 구해 같으면 true를 반환하고 아니면 false를 반환한다. 
-=======
-
-1. match를 이용해 s에 있는 y와 p를 찾고 카운트를 센다.
-2. 카운트가 같으면 true를 출력 아니면 false 반환한다.
->>>>>>> f3086e7a373e0ab3c4348163bed3d2484344baa7
 
 ### 난관
-
 - js는 처음이라 여러 함수를 찾으면 해결했다.
