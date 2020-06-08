@@ -11,17 +11,22 @@ fun solution(priorities: IntArray, location: Int): Int {
     }
     var index = 0
     val array = ArrayList<Int>()
-    queue.indices.forEach {
-        while(queue[8-it].size>0) {
-            val value = queue[8-it].poll()
+    queue.reversedArray().forEach {
+        val tempQueue = LinkedList<Int>()
+        while(it.size>0) {
+            val value = it.poll()
             if(index <= value) {
                 array.add(value)
                 index = value
             } else {
-                queue[8-it].offer(value)
+                tempQueue.offer(value)
             }
-            if(value > queue[8-it].peek() ?: infinity) index = 0
-            if(queue[8-it].size==1) index = 0
+            if(value > it.peek() ?: infinity) index = 0
+        }
+        while(tempQueue.size > 0) {
+            val value = tempQueue.poll()
+            array.add(value)
+            index = value
         }
     }
     return array.indexOf(location) + 1
