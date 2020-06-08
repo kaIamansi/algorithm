@@ -11,18 +11,16 @@ fun checkSkillSequence(skill: String): Array<Int?> =
         arrayOfNulls<Int>(26).apply {
             var count = 1
             skill.forEach {
-                this[getAlphabetIndex(it)] = count++
+                this[it.index] = count++
             }
         }
-
-fun getAlphabetIndex(c: Char) = c.toInt() - 65
 
 fun isCollectSkillTree(alphabetArr: Array<Int?>, skill: String): Boolean {
     var count = 1
     skill.forEach {
-        if (alphabetArr[getAlphabetIndex(it)] ?: 0 > count) {
+        if (alphabetArr[it.index] ?: 0 > count) {
             return false
-        } else if(alphabetArr[getAlphabetIndex(it)] ?: 0 == count) {
+        } else if(alphabetArr[it.index] ?: 0 == count) {
             count++
         }
     }

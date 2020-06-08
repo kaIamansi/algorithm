@@ -1,7 +1,5 @@
 import kotlin.math.min
 
-const val infinity = 987654321
-
 fun solution(begin: String, target: String, words: Array<String>): Int
     = dps(begin, target, Array(words.size) { false }, words).let {
         if(it==infinity) 0 else it

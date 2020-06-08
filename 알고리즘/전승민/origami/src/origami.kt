@@ -9,13 +9,11 @@ fun solution(n: Int): IntArray =
 
 fun IntArray.putData(left: Int, right: Int) {
     if (left == right) return
-    val mid = left getMid right
-    this[left getMid mid - 1] = 0
-    this[mid + 1 getMid right] = 1
+    val mid = left getMidWith right
+    this[left getMidWith mid - 1] = 0
+    this[mid + 1 getMidWith right] = 1
     putData(left, mid - 1)
     putData(mid + 1, right)
 }
-
-infix fun Int.getMid(b: Int) = (this + b) / 2
 
 // https://programmers.co.kr/learn/courses/30/lessons/62049

@@ -46,13 +46,8 @@ val Pair<Int, TreeSet<Pair<Int, Int>>>.treeSet : TreeSet<Pair<Int, Int>>
 val Pair<Int, TreeSet<Pair<Int, Int>>>.playCount : Int
     get() = this.first
 
-val Int.nagative : Int
-    get() = this * -1
-
 fun Pair<Int, TreeSet<Pair<Int, Int>>>.playCountIntoGenre(playCount: Int, index: Int) = this.second.add(playCount to index)
 
 infix fun TreeSet<Pair<Int, Int>>.addLastInto(array : ArrayList<Int>) = array.addNullableInt(this.pollLast()?.second)
-
-fun ArrayList<Int>.addNullableInt(number : Int?) = if(number!=null) this.add(number) else false
 
 // https://programmers.co.kr/learn/courses/30/lessons/42579
