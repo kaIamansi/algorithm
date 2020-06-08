@@ -11,18 +11,22 @@ fun solution(priorities: IntArray, location: Int): Int {
     }
     var index = 0
     val array = ArrayList<Int>()
-    queue.indices.forEach {
-        while(queue[8-it].size>0) {
-            val value = queue[8-it].poll()
-            println(value)
+    queue.reversedArray().forEach {
+        val tempQueue = LinkedList<Int>()
+        while(it.size>0) {
+            val value = it.poll()
             if(index <= value) {
                 array.add(value)
                 index = value
             } else {
-                queue[8-it].offer(value)
+                tempQueue.offer(value)
             }
-            if(value > queue[8-it].peek() ?: infinity) index = 0
-            if(queue[8-it].size==1) index = 0
+            if(value > it.peek() ?: infinity) index = 0
+        }
+        while(tempQueue.size > 0) {
+            val value = tempQueue.poll()
+            array.add(value)
+            index = value
         }
     }
     return array.indexOf(location) + 1
@@ -32,6 +36,16 @@ fun solution(priorities: IntArray, location: Int): Int {
 1. 큐 9개를 만들어 우선순위에 맞게 큐에 삽입.
 2. 마지막 출력 인덱스를 저장하며 큐에서 순서에 맞게 꺼내 배열에 넣음.
 3. 해당 인덱스가 몇 번째인지 반환.
+
+### 시간복잡도
+프린터의 대기열의 개수를 n이라 했을때,
++ forEachIndexed : O(n)
++ reversedArray : O(n)
++ forEach : O(1)
+    + while : O(n)
+    + while : O(n)
++ indexOf : O(n).
+#### 이 알고리즘의 시간복잡도는 O(n).
 
 # 2020/06/04
 [소스코드(Kotlin)](./wordTranslate/wordTranslate.kt)
