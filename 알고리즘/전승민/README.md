@@ -1,5 +1,38 @@
 ## algorithm workspace
 
+# 2020/06/08
+[소스코드(Kotlin)](./printer/printer.kt)
++ 프린터 큐가 들어오는데, 우선순위에 따라 출력했을때, 원하는 출력물이 몇번째로 출력되는지 반환하는 문제.
+```kotlin
+fun solution(priorities: IntArray, location: Int): Int {
+    val queue = Array<Queue<Int>>(9) { LinkedList<Int>() }
+    priorities.forEachIndexed {index: Int, it: Int ->
+        queue[it-1].offer(index)
+    }
+    var index = 0
+    val array = ArrayList<Int>()
+    queue.indices.forEach {
+        while(queue[8-it].size>0) {
+            val value = queue[8-it].poll()
+            println(value)
+            if(index <= value) {
+                array.add(value)
+                index = value
+            } else {
+                queue[8-it].offer(value)
+            }
+            if(value > queue[8-it].peek() ?: infinity) index = 0
+            if(queue[8-it].size==1) index = 0
+        }
+    }
+    return array.indexOf(location) + 1
+}
+```
++ 풀이
+1. 큐 9개를 만들어 우선순위에 맞게 큐에 삽입.
+2. 마지막 출력 인덱스를 저장하며 큐에서 순서에 맞게 꺼내 배열에 넣음.
+3. 해당 인덱스가 몇 번째인지 반환.
+
 # 2020/06/04
 [소스코드(Kotlin)](./wordTranslate/wordTranslate.kt)
 + 기존 문자열에서 단어를 한 글자씩 변환해 목표 문자열을 만들 수 있는 최소한의 횟수를 반환하는 문제.
