@@ -1,10 +1,3 @@
-fun main() {
-    val n = 3
-    val lost = intArrayOf(3)
-    val reserve = intArrayOf(1)
-    println(solution(n,lost,reserve))
-}
-
 fun solution(n: Int, lost: IntArray, reserve: IntArray): Int {
     val clothesArr = IntArray(n) {1}
     lost.forEach {

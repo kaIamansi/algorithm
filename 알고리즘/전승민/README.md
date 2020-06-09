@@ -1,5 +1,37 @@
 ## algorithm workspace
 
+#2020/06/09
+[소스코드(Kotlin)](./workoutClothes/workoutClothes.kt)
++ 여벌의 체육복을 가져온 친구가 체육복을 잃어버린 친구에게 빌려줬을 때, 체육복을 입을 수 있는 학생 수 반환.(바로 옆자리 친구에게만 빌려줄 수 있음.)
+```kotlin
+fun solution(n: Int, lost: IntArray, reserve: IntArray): Int {
+    val clothesArr = IntArray(n) {1}
+    lost.forEach {
+        clothesArr[it-1]--
+    }
+    reserve.forEach {
+        clothesArr[it-1]++
+    }
+    clothesArr.forEachIndexed { index, i ->
+        if(i==0) {
+            if(index!=0 && clothesArr[index-1]==2) {
+                clothesArr[index-1]--
+                clothesArr[index]++
+            } else if(index!=clothesArr.size-1 && clothesArr[index+1]==2) {
+                clothesArr[index+1]--
+                clothesArr[index]++
+            }
+        }
+    }
+    return clothesArr.filter { it > 0 }.size
+}
+```
++ 풀이
+1. 학생 수만큼 배열을 만들어 1로 초기화
+2. 잃어버린 친구는 0, 여벌을 가지고 있는 친구는 2로 증가.(여벌을 갖고 있지만 잃어버렸다면 1.)
+3. 배열을 탐색하며 체육복을 잃어버린 친구가 있으면 왼쪽, 오른쪽 순서로 여벌 옷이 있는지 탐색.
+4. 체육복을 가진 학생 수 반환.
+
 # 2020/06/08
 [소스코드(Kotlin)](./printer/printer.kt)
 + 프린터 큐가 들어오는데, 우선순위에 따라 출력했을때, 원하는 출력물이 몇번째로 출력되는지 반환하는 문제.
