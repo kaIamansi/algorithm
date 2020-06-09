@@ -1,6 +1,6 @@
 ## algorithm workspace
 
-#2020/06/09
+# 2020/06/09
 [소스코드(Kotlin)](./workoutClothes/workoutClothes.kt)
 + 여벌의 체육복을 가져온 친구가 체육복을 잃어버린 친구에게 빌려줬을 때, 체육복을 입을 수 있는 학생 수 반환.(바로 옆자리 친구에게만 빌려줄 수 있음.)
 ```kotlin
