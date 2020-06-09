@@ -1,5 +1,37 @@
 ## algorithm workspace
 
+# 2020/06/10
+[소스코드(Kotlin)](./network/network.kt)
++ 컴퓨터가 서로 연결된 네트워크의 개수를 구하는 문제.
+```kotlin
+private fun solution(n: Int, computers: Array<IntArray>): Int {
+    parent = IntArray(n)
+    rank = IntArray(n) { 0 }
+    for (i in 0 until n) {
+        parent[i] = i
+    }
+    computers.forEachIndexed { i, ints ->
+        for(j in i+1 until n) {
+            if(computers[i][j]==1) {
+                union(i,j)
+            }
+        }
+    }
+    return parent.map {
+        find(it)
+    }.toHashSet().size
+}
+```
++ 풀이
+1. 연결된 네트워크 정보를 기반으로 유니온 파인드 기법을 활용.
+2. 유니온 파인드 기법을 활용해 값이 다른 부모의 개수를 반환.
+### 시간복잡도 : O(n^2).
++ 유효한 간선의 개수. O(n^2)
++ union() O(1)
++ find() O(1)
++ map() O(n)
++ thHashSet() O(n)
+
 # 2020/06/09
 [소스코드(Kotlin)](./workoutClothes/workoutClothes.kt)
 + 여벌의 체육복을 가져온 친구가 체육복을 잃어버린 친구에게 빌려줬을 때, 체육복을 입을 수 있는 학생 수 반환.(바로 옆자리 친구에게만 빌려줄 수 있음.)
