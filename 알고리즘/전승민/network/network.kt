@@ -8,9 +8,9 @@ private fun solution(n: Int, computers: Array<IntArray>): Int {
         parent[i] = i
     }
     computers.forEachIndexed { i, ints ->
-        ints.forEachIndexed { j, int ->
-            if (int == 1) {
-                union(i, j)
+        for(j in i+1 until n) {
+            if(computers[i][j]==1) {
+                union(i,j)
             }
         }
     }
