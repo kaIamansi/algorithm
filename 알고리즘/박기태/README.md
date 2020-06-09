@@ -1,5 +1,14 @@
 ## algorithm workspace
 
+# 2020/06/08  
+[소스코드(Javascript)](./2020-06-08/solution.js)  
+
+- url : https://programmers.co.kr/learn/courses/30/lessons/42587  
+- 설명 : 문제에서 제시한 조건을 토대로 코드를 작성한다. 1) 꺼낸 문서 뒤에 중요도가 더 높은 문서가 있다면 꺼낸 문서를 대기열 가장 마지막으로 보낼 것. 2) location으로 주어진 문서가 몇번째로 뽑히는지 알고 싶다. 1번 조건에 따라 대기열은 Queue를 이용하는 것이 올바르다.
+
+- 풀이 : 코드 참조.
+
+
 # 2020/06/03  
 [소스코드(Javascript)](./2020-06-03/solution.js)  
 
