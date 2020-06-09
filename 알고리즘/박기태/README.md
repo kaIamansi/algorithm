@@ -1,5 +1,15 @@
 ## algorithm workspace
 
+
+# 2020/06/09  
+[소스코드(Javascript)](./2020-06-09/solution.js)  
+
+- url : https://programmers.co.kr/learn/courses/30/lessons/42862  
+- 설명 : 체육복을 잃어버린 학생중에 1) 여벌의 체육복을 가졌거나 2) 여벌의 체육복을 가진 앞, 뒷 번호의 다른 학생에게 빌릴 수 있다. 이 두가지 경우를 고려하여 체육복을 (빌려) 입고 체육수업에 참여할 수 있는 학생의 수를 구한다.
+
+- 풀이 : 코드 참조.
+
+
 # 2020/06/08  
 [소스코드(Javascript)](./2020-06-08/solution.js)  
 

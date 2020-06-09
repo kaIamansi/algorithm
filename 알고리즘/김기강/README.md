@@ -2,6 +2,121 @@
 
 
 
+### 2020.06.09 알고리즘
+
+문제: https://programmers.co.kr/learn/courses/30/lessons/42862
+
+소스코드:
+
+```java
+class Solution {
+    public int solution(int n, int[] lost, int[] reserve) {
+        int answer = 0;
+        int[] student = new int[n];
+        
+        for(int i = 0; i < n; i++) {
+            student[i] = 1;
+        }
+        for(int l : lost) {
+            student[l-1]--;
+        }
+        for(int r : reserve) {
+            student[r-1]++;
+        }
+        
+        for(int i = 0; i < n; i++) {
+            if(student[i] == 0) {
+                if(i + 1 < n && student[i+1] == 2) {
+                    student[i]++;
+                    student[i+1]--;
+                } else if(i - 1 > 0 && student[i-1] == 2) {
+                    student[i]++;
+                    student[i-1]--;
+                }
+            }
+        }
+        
+        for(int i = 0; i < n; i++) {
+            if(student[i] > 0) {
+                answer++;
+            }
+        }
+        
+        return answer;
+    }
+}
+```
+
+기강이의 풀이:
+
+1. 모든 학생들이 기본적으로 체육복을 갖고 있다.
+2. 도난 당한 것과 여분의 체육복을 계산한다.
+3. 도난 당한 학생의 앞, 뒤 번호 학생에게 빌릴 수 있는 옷이 있는지 검사한다.
+4. 체육복이 1개 이상 있으면 수업을 들을 수 있다.
+
+
+
+### 2020.06.08 알고리즘
+
+문제: https://programmers.co.kr/learn/courses/30/lessons/42587
+
+소스코드:
+
+```java
+import java.util.*;
+class Solution {
+    public int solution(int[] priorities, int location) {
+        int answer = 1;
+        
+        Queue<qtem> queue = new ArrayDeque<>();
+        for(int i = 0; i < priorities.length; i++) {
+            qtem tem  = new qtem(priorities[i]);
+            if(i == location) {
+                tem.ud = true;
+            }
+            queue.add(tem);
+        }
+        Arrays.sort(priorities);
+        
+        int where = priorities.length -1;
+        
+        while(!queue.isEmpty()) {
+            qtem tem = queue.poll();
+            if(tem.priority == priorities[where]) {
+                if(tem.ud) {
+                    return answer;
+                }
+                answer++;
+                where--;
+            } else {
+                queue.add(tem);
+            }   
+        }
+        
+        return answer;
+    }
+}
+
+class qtem {
+    int priority;
+    boolean ud;
+    
+    qtem(int priority) {
+        this.priority = priority;
+        this.ud = false;
+    }
+}
+```
+
+기강이의 풀이:
+
+1. queue에 priorities를 넣어준다. 이때 찾으려는 것은 ud를 true로 바꿔준다.
+2. poll()로 가장 먼저 넣은 것을 꺼내서 비교한다.
+3. 찾으려는 것과 같은 priority를 갖고 있으며, ud가 true면 answer를 리턴, false면 answer을 1 올리고 다시 비교한다.
+4. 다르면 다시 queue에 넣어준다.
+
+
+
 ### 2020.06.03 알고리즘
 
 문제: https://programmers.co.kr/learn/courses/30/lessons/64061

@@ -1,9 +1,46 @@
 ## algorithm workspace
-# 2020/06/08
-### 문제: 프린터
-+ 예전에 c++로 풀어서 c#으로 다시 풀었다.
+# 2020/06/09
+### 문제: 체육복(https://programmers.co.kr/learn/courses/30/lessons/42862)
 
-#### 다시 푼 것
+### 코드(C++)
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n, vector<int> lost, vector<int> reserve) {
+	int answer = 0;
+	int uniform[30];
+	std::fill_n(uniform, 30, 1);
+	for (int i = 0; i < reserve.size(); i++) {
+		uniform[reserve[i] - 1]++;
+	}
+	for (int i = 0; i < lost.size(); i++) {
+		uniform[lost[i] - 1]--;
+	}
+	for (int i = 0; i < n; i++) {
+		if (uniform[i] == 0) {
+			if (i > 0 && uniform[i - 1] > 1) {
+				uniform[i - 1]--;
+				uniform[i]++;
+			}
+			else if (i < n && uniform[i + 1] > 1) {
+				uniform[i + 1]--;
+				uniform[i]++;
+			}
+		}
+		if (uniform[i] > 0)
+			answer++;
+	}
+	return answer;
+}
+```
+# 2020/06/08
+### 문제: 프린터(https://programmers.co.kr/learn/courses/30/lessons/42587)
+- 예전에 c++로 풀어서 c#으로 다시 풀었다.
+
+#### 다시 푼 것(C#)
 ```c#
 using System;
 using System.Linq;
@@ -38,7 +75,7 @@ public class Solution {
     }
 }
 ```
-#### 예전코드
+#### 예전코드(C++)
 ```c++
 #include <string>
 #include <vector>
@@ -80,8 +117,9 @@ int solution(vector<int> priorities, int location) {
 }
 ```
 # 2020/06/03
-### 문제: 종이접기
+### 문제: 종이접기(https://programmers.co.kr/learn/courses/30/lessons/62049)
 
+### 코드(C++)
 ```c++
 #include <string>
 #include <vector>
@@ -112,8 +150,8 @@ vector<int> solution(int n) {
 ```
 
 ### 풀이
-+ n이 1일 때는 0으로 지정
-+ answer을 {0, 0, 1}로 초기화
-+ 3이상이면 
+- n이 1일 때는 0으로 지정
+- answer을 {0, 0, 1}로 초기화
+- 3이상이면 
     1. answer + 0 + !(rewsna)을 arr 에 저장
     2. answer에 arr 저장 후 반복

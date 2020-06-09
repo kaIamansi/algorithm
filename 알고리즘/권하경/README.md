@@ -1,5 +1,35 @@
 # algorithm workspace
 
+## 20/06/09
+```
+function solution(n, lost, reserve) {
+  const l = [...lost];
+  lost.forEach(x=>{
+    if(reserve.indexOf(x)!=-1){
+      reserve.splice(reserve.indexOf(x),1);
+      l.splice(l.indexOf(x),1);
+    }
+  });
+  [...l].forEach(x=>{
+    if(reserve.indexOf(x-1)!=-1){
+      reserve.splice(reserve.indexOf(x-1),1);
+      l.splice(l.indexOf(x),1);
+    }else if(reserve.indexOf(x+1)!=-1){
+      reserve.splice(reserve.indexOf(x+1),1);
+      l.splice(l.indexOf(x),1);
+    }
+  });
+  return n-l.length;
+}
+```
+### 풀이
+
+1. 처음에 여벌의 옷을 뺏긴 경우를 뺀다.
+
+2. 그리고 1 작은 경우부터 검사하고 1 큰 경우를 검사하면서 뺀다.
+
+3. l의 길이를 n에 빼주면 답이 나온다.
+
 ## 20/06/08
 ```
 function solution(priorities, location) {

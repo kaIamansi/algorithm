@@ -1,5 +1,53 @@
 ## algorithm workspace
 
+## 20/06/09
+
+```js
+function solution(n, losts, reserves) {
+  const lost = [...losts];
+  const reserve = [...reserves];
+
+  losts.forEach((v) => {
+    if (reserve.includes(v)) {
+      lost.splice(lost.indexOf(v), 1);
+      reserve.splice(reserve.indexOf(v), 1);
+    }
+  });
+
+  [...lost].forEach((v) => {
+    if (reserve.includes(v + 1) || reserve.includes(v - 1)) {
+      if (reserve.includes(v + 1) && reserve.includes(v - 1)) {
+        reserve.splice(reserve.indexOf(v - 1), 1);
+        lost.splice(lost.indexOf(v), 1);
+        return true;
+      }
+
+      if (!reserve.includes(v + 1) && !reserve.includes(v - 1)) {
+        return true;
+      }
+
+      if (reserve.indexOf(v - 1)) {
+        reserve.splice(reserve.indexOf(v - 1), 1);
+        lost.splice(lost.indexOf(v), 1);
+      } else {
+        reserve.splice(reserve.indexOf(v + 1), 1);
+        lost.splice(lost.indexOf(v), 1);
+      }
+    }
+  });
+
+  return n - lost.length;
+}
+```
+
+### 풀이
+
+1. 잃어버렸지만 여부 있으면 제외
+2. 없는애한테 있는애가 빌려줌.
+3. 그래도 없는애 개수를 n에서 제외
+
+---
+
 ## 20/06/08
 
 ```js

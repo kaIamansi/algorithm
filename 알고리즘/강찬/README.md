@@ -1,15 +1,18 @@
 ## algorithm workspace
 
-- 20/05/25
-```
-function solution(s){
-  s = s.toLowerCase().split('');  
-   
-  return s.filter(word=> word=='p').length==s.filter(word=> word=='y').length;
-}
+06-04
+BFS, DFS 개념 공부</br>
+==================
+그래프의 개념
+-> 정점과 간선으로 이루어진 자료구조</br>
+BFS와 DFS는 어느 한 노드로부터 시작해 원하는 노드로까지 탐색하는 방법을 가르키는 알고리즘을 뜻함.
 
-```
 
-### 풀이
-1. 문자열 s를 소문자로 바꾸고 배열로 만든다.
-2. filter함수로 p와 y만 따로 빼서 배열을 만든 다음 배열 길이를 비교하여 같으면 true, 다르면 false를 리턴한다.
+BFS
+---
+현재 노드와 인접한 노드들부터 탐색하는 방법 
+
+DFS
+---
+해당 노드와 인접한 노드중 하나의 노드를 선택해 연달하 탐색해 나가는 과정
+

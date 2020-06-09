@@ -1,4 +1,4 @@
-# 20/06/03
+# 20/06/08
 - 정답코드 
 ```python
 def solution(priorities, location):
