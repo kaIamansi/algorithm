@@ -1,5 +1,61 @@
 ## algorithm workspace
 
+
+
+### 2020.06.09 알고리즘
+
+문제: https://programmers.co.kr/learn/courses/30/lessons/42862
+
+소스코드:
+
+```java
+class Solution {
+    public int solution(int n, int[] lost, int[] reserve) {
+        int answer = 0;
+        int[] student = new int[n];
+        
+        for(int i = 0; i < n; i++) {
+            student[i] = 1;
+        }
+        for(int l : lost) {
+            student[l-1]--;
+        }
+        for(int r : reserve) {
+            student[r-1]++;
+        }
+        
+        for(int i = 0; i < n; i++) {
+            if(student[i] == 0) {
+                if(i + 1 < n && student[i+1] == 2) {
+                    student[i]++;
+                    student[i+1]--;
+                } else if(i - 1 > 0 && student[i-1] == 2) {
+                    student[i]++;
+                    student[i-1]--;
+                }
+            }
+        }
+        
+        for(int i = 0; i < n; i++) {
+            if(student[i] > 0) {
+                answer++;
+            }
+        }
+        
+        return answer;
+    }
+}
+```
+
+기강이의 풀이:
+
+1. 모든 학생들이 기본적으로 체육복을 갖고 있다.
+2. 도난 당한 것과 여분의 체육복을 계산한다.
+3. 도난 당한 학생의 앞, 뒤 번호 학생에게 빌릴 수 있는 옷이 있는지 검사한다.
+4. 체육복이 1개 이상 있으면 수업을 들을 수 있다.
+
+
+
 ### 2020.06.08 알고리즘
 
 문제: https://programmers.co.kr/learn/courses/30/lessons/42587
