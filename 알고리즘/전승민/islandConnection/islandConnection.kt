@@ -6,7 +6,7 @@ fun main() {
     println(solution(n, costs))
 }
 
-fun solution(n: Int, costs: Array<IntArray>): Int {
+private fun solution(n: Int, costs: Array<IntArray>): Int {
     var size = 0
     val visit = Array<Int?>(n) { null }
     val priorityQueue = PriorityQueue<IntArray>(compare)
