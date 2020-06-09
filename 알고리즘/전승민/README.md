@@ -32,6 +32,12 @@ fun solution(n: Int, lost: IntArray, reserve: IntArray): Int {
 3. 배열을 탐색하며 체육복을 잃어버린 친구가 있으면 왼쪽, 오른쪽 순서로 여벌 옷이 있는지 탐색.
 4. 체육복을 가진 학생 수 반환.
 
+### 시간복잡도 : O(n)
++ lost.forEach : O(n)
++ reserve.forEach : O(n)
++ clothesArr.forEachIndexed : O(n)
++ clothesArr.filter : O(n)
+
 # 2020/06/08
 [소스코드(Kotlin)](./printer/printer.kt)
 + 프린터 큐가 들어오는데, 우선순위에 따라 출력했을때, 원하는 출력물이 몇번째로 출력되는지 반환하는 문제.
@@ -69,7 +75,7 @@ fun solution(priorities: IntArray, location: Int): Int {
 2. 마지막 출력 인덱스를 저장하며 큐에서 순서에 맞게 꺼내 배열에 넣음.
 3. 해당 인덱스가 몇 번째인지 반환.
 
-### 시간복잡도
+### 시간복잡도 O(n)
 프린터의 대기열의 개수를 n이라 했을때,
 + forEachIndexed : O(n)
 + reversedArray : O(n)
@@ -77,7 +83,6 @@ fun solution(priorities: IntArray, location: Int): Int {
     + while : O(n)
     + while : O(n)
 + indexOf : O(n).
-#### 이 알고리즘의 시간복잡도는 O(n).
 
 # 2020/06/04
 [소스코드(Kotlin)](./wordTranslate/wordTranslate.kt)
