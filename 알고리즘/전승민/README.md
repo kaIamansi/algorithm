@@ -30,7 +30,7 @@ private fun solution(n: Int, computers: Array<IntArray>): Int {
 + union() O(1)
 + find() O(1)
 + map() O(n)
-+ thHashSet() O(n)
++ toHashSet() O(n)
 
 # 2020/06/09
 [소스코드(Kotlin)](./workoutClothes/workoutClothes.kt)
