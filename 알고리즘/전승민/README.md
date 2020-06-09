@@ -1,5 +1,37 @@
 ## algorithm workspace
 
+#2020/06/09
+[소스코드(Kotlin)](./workoutClothes/workoutClothes.kt)
++ 여벌의 체육복을 가져온 친구가 체육복을 잃어버린 친구에게 빌려줬을 때, 체육복을 입을 수 있는 학생 수 반환.(바로 옆자리 친구에게만 빌려줄 수 있음.)
+```kotlin
+fun solution(n: Int, lost: IntArray, reserve: IntArray): Int {
+    val clothesArr = IntArray(n) {1}
+    lost.forEach {
+        clothesArr[it-1]--
+    }
+    reserve.forEach {
+        clothesArr[it-1]++
+    }
+    clothesArr.forEachIndexed { index, i ->
+        if(i==0) {
+            if(index!=0 && clothesArr[index-1]==2) {
+                clothesArr[index-1]--
+                clothesArr[index]++
+            } else if(index!=clothesArr.size-1 && clothesArr[index+1]==2) {
+                clothesArr[index+1]--
+                clothesArr[index]++
+            }
+        }
+    }
+    return clothesArr.filter { it > 0 }.size
+}
+```
++ 풀이
+1. 학생 수만큼 배열을 만들어 1로 초기화
+2. 잃어버린 친구는 0, 여벌을 가지고 있는 친구는 2로 증가.(여벌을 갖고 있지만 잃어버렸다면 1.)
+3. 배열을 탐색하며 체육복을 잃어버린 친구가 있으면 왼쪽, 오른쪽 순서로 여벌 옷이 있는지 탐색.
+4. 체육복을 가진 학생 수 반환.
+
 # 2020/06/08
 [소스코드(Kotlin)](./printer/printer.kt)
 + 프린터 큐가 들어오는데, 우선순위에 따라 출력했을때, 원하는 출력물이 몇번째로 출력되는지 반환하는 문제.
@@ -11,18 +43,22 @@ fun solution(priorities: IntArray, location: Int): Int {
     }
     var index = 0
     val array = ArrayList<Int>()
-    queue.indices.forEach {
-        while(queue[8-it].size>0) {
-            val value = queue[8-it].poll()
-            println(value)
+    queue.reversedArray().forEach {
+        val tempQueue = LinkedList<Int>()
+        while(it.size>0) {
+            val value = it.poll()
             if(index <= value) {
                 array.add(value)
                 index = value
             } else {
-                queue[8-it].offer(value)
+                tempQueue.offer(value)
             }
-            if(value > queue[8-it].peek() ?: infinity) index = 0
-            if(queue[8-it].size==1) index = 0
+            if(value > it.peek() ?: infinity) index = 0
+        }
+        while(tempQueue.size > 0) {
+            val value = tempQueue.poll()
+            array.add(value)
+            index = value
         }
     }
     return array.indexOf(location) + 1
@@ -32,6 +68,16 @@ fun solution(priorities: IntArray, location: Int): Int {
 1. 큐 9개를 만들어 우선순위에 맞게 큐에 삽입.
 2. 마지막 출력 인덱스를 저장하며 큐에서 순서에 맞게 꺼내 배열에 넣음.
 3. 해당 인덱스가 몇 번째인지 반환.
+
+### 시간복잡도
+프린터의 대기열의 개수를 n이라 했을때,
++ forEachIndexed : O(n)
++ reversedArray : O(n)
++ forEach : O(1)
+    + while : O(n)
+    + while : O(n)
++ indexOf : O(n).
+#### 이 알고리즘의 시간복잡도는 O(n).
 
 # 2020/06/04
 [소스코드(Kotlin)](./wordTranslate/wordTranslate.kt)

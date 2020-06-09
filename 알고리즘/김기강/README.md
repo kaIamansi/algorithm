@@ -1,5 +1,64 @@
 ## algorithm workspace
 
+### 2020.06.08 알고리즘
+
+문제: https://programmers.co.kr/learn/courses/30/lessons/42587
+
+소스코드:
+
+```java
+import java.util.*;
+class Solution {
+    public int solution(int[] priorities, int location) {
+        int answer = 1;
+        
+        Queue<qtem> queue = new ArrayDeque<>();
+        for(int i = 0; i < priorities.length; i++) {
+            qtem tem  = new qtem(priorities[i]);
+            if(i == location) {
+                tem.ud = true;
+            }
+            queue.add(tem);
+        }
+        Arrays.sort(priorities);
+        
+        int where = priorities.length -1;
+        
+        while(!queue.isEmpty()) {
+            qtem tem = queue.poll();
+            if(tem.priority == priorities[where]) {
+                if(tem.ud) {
+                    return answer;
+                }
+                answer++;
+                where--;
+            } else {
+                queue.add(tem);
+            }   
+        }
+        
+        return answer;
+    }
+}
+
+class qtem {
+    int priority;
+    boolean ud;
+    
+    qtem(int priority) {
+        this.priority = priority;
+        this.ud = false;
+    }
+}
+```
+
+기강이의 풀이:
+
+1. queue에 priorities를 넣어준다. 이때 찾으려는 것은 ud를 true로 바꿔준다.
+2. poll()로 가장 먼저 넣은 것을 꺼내서 비교한다.
+3. 찾으려는 것과 같은 priority를 갖고 있으며, ud가 true면 answer를 리턴, false면 answer을 1 올리고 다시 비교한다.
+4. 다르면 다시 queue에 넣어준다.
+
 
 
 ### 2020.06.03 알고리즘
