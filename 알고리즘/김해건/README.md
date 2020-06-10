@@ -1,3 +1,26 @@
+## 2020-06-09
+
+```Javascript
+function solution(array, commands) {
+    let arr = [];
+    let temp = [];
+    
+    commands.forEach((item, index) => {
+        temp = array.slice(item[0]-1, item[1]);
+        temp.sort((a, b) => a - b);
+        arr.push(temp[item[2]-1]);
+    })
+    
+    return arr;       
+}
+```
+
+### 풀이
+
+1. forEach를 사용해서 각 요소에 접근했다.
+2. 요소에서 slice를 사용해서 인덱스 번호에 맞게 잘라냈다.
+3. 내림차순으로 정렬한 후 인덱스 번호에 해당하는 요소를 arr 배열에 담았다.
+
 ## 2020-06-02
 
 ```Javascript
