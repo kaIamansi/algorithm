@@ -1,5 +1,45 @@
 ## algorithm workspace
 
+## 20/06/10
+
+```js
+function solution(n, computers) {
+  var answer = 0;
+  const check = [];
+
+  computers.forEach(() => {
+    check.push(false);
+  });
+
+  function DFS(index) {
+    check[index] = true;
+
+    for (let i = 0; i < computers.length; i++) {
+      if (computers[index][i] === 1 && !check[i]) {
+        DFS(i);
+      }
+    }
+  }
+
+  for (let i = 0; i < computers.length; i++) {
+    if (!check[i]) {
+      DFS(i);
+      answer += 1;
+    }
+  }
+
+  return answer;
+}
+```
+
+### 풀이
+
+1. computer의 개수만큼 배열 생성
+2. 각각의 컴퓨터마다 DFS를 돌림.
+3. answer에 하나씩 더해가면서 경우를 구함.
+
+---
+
 ## 20/06/09
 
 ```js
