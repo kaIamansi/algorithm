@@ -20,7 +20,8 @@ def solution(n, computers):
     cnt = 0
 
     for i in range(len(computers)):
-        if
+        if visit[i] == 0:
+            cnt += 1
             dps(computers, i, visit, cnt)
 
     return cnt
