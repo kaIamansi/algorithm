@@ -2,6 +2,72 @@
 
 
 
+### 2020.06.10 알고리즘
+
+문제: https://programmers.co.kr/learn/courses/30/lessons/43162
+
+소스코드:
+
+```java
+class Solution {
+	public int solution(int n, int[][] computers) {
+		int answer = 0;
+		
+		boolean[] check = new boolean[n];	//왔었는지 확인
+		
+		for(int i = 0; i < n; i++) {
+			if(check[i] == false) {	//안왔던 곳이면 네트워크를 확인
+				netCheck(n, i, computers, check);
+				answer++;	//네트워크 파악하면 답 1올려줌
+			}
+		}
+		
+		return answer;
+	}
+	
+	public void netCheck(int n, int idx, int[][] computers, boolean[] check) {
+		check[idx] = true;	//출석체크
+		
+		for(int i = 0; i < n; i++) {
+			if(check[i] == false && idx != i && computers[idx][i] == 1) {	//가지 않았으며, 자신이 아니고, 연결되어있는 곳이면 간다.
+				netCheck(n, i, computers, check);
+            }
+        }
+    }   
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+/* 이전 시도
+class Solution {
+	public int solution(int n, int[][] computers) {
+		int answer = n;
+		
+		for(int i = 0; i < n; i++) {
+			for(int j = i;  j < n; j++) {
+				if(computers[i][j] == 1 && i != j) {
+					answer--;
+					computers[j][j] = 0;
+					//이후 중복을 없애기 위해 넣었지만, 한정된 상황에서만 정상
+				}
+			}
+		}
+		
+		return answer;
+	}
+}
+*/
+```
+
+기강이의 풀이:
+
+1. boolean 배열을 만들어서 왔었는지 확인을 한다.
+2. 첫 번째 컴퓨터부터 확인한다.
+3. 확인되면 check를 true로 바꿔준다.
+4. 가지 않았고, 내가 아니면서 갈 수 있는 곳이라면 간다.
+5. 더 이상 못가면 네트워크(answer) 1개를 올려준다.
+6. 이후 check된 컴퓨터들을 넘어가면서 확인한다.
+
+
+
 ### 2020.06.09 알고리즘
 
 문제: https://programmers.co.kr/learn/courses/30/lessons/42862
