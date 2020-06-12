@@ -2,6 +2,120 @@
 
 
 
+### 2020.06.11 알고리즘
+
+문제: https://programmers.co.kr/learn/courses/30/lessons/43163
+
+소스코드:
+
+```java
+class Solution {
+    int compare = 0;    //걸린 횟수 저장
+    
+    public int solution(String begin, String target, String[] words) {
+        int answer = 0;
+        boolean[] went = new boolean[words.length]; //네트워크처럼 갔던 곳 확인용
+        
+        for(int i = 0; i < words.length; i++) {
+            if(words[i].equals(target)) {   //words 배열에 타겟이 있으면 확인한다. 원래 없었는데 넣으니까 시간이 빨라졌다 히히.
+                toTarget(begin, target, words, went, 0);
+            }
+        }
+        
+        answer = compare;   //걸린 횟수
+        
+        return answer;
+    }
+    
+    public void toTarget(String begin, String target, String[] words, boolean[] went, int count) {
+        for(int i = 0; i < words.length; i++) {
+            if(begin.equals(target)) {      //비교를 시작한 것과 target이 같으면 compare을 바꿔준다.
+                compare = compare > count ? compare : count;
+                //compare = Math.max(compare, count);   //비교하는 다른 방법 찾다가 Math.max가 있어서 써봤다.
+                return;
+            }
+            
+            if(went[i] == true) {   //갔던 곳이면 다음으로 넘어간다.
+                continue;
+            }
+            
+            int check = 0;
+            for(int j = 0; j < target.length(); j++) {      //글자를 비교한다.
+                if(words[i].charAt(j) != begin.charAt(j)) {
+                    check++;
+                }
+            }
+            
+            if(check == 1 && went[i] == false) {    //한 글자만 달라야 이동 가능하다.
+                begin = words[i];
+                went[i] = true;
+                toTarget(begin, target, words, went, count+1);
+            }
+        }
+        
+    }
+}
+
+/* 실패 코드 : 0만 나옴 (작동을 안함)
+class Solution {
+    String[] bgWords, cpWords;
+    
+    public int solution(String begin, String target, String[] words) {
+        int answer = 50;
+        
+        for(int i = 0; i < words.length(); i++) {
+            int time = 0;
+            
+            toTarget(time, begin, target, words);
+
+            if(time < answer) {
+                answer = time;
+            }
+        }
+        
+        return answer;
+    }
+    
+    public void toTarget(int time, String begin, String target, String[] words) {
+        time += 1;
+        
+        if(begin != target) {
+            for(int i = 0; i < words.length; i++) {
+                int count = 0;
+
+                bgWords = begin.split("");
+                cpWords = words[i].split("");
+                for(int j = 0; j < bgWords.length; j++) {
+                    if(bgWords[j] != cpWords[j]) {
+                        count++;
+                    }
+                }
+                
+                if(count == 1) {
+                    begin = words[i];
+                    toTarget(time, begin, target, words);
+                }
+            }
+        }
+        
+    }
+}
+*/
+```
+
+기강이의 풀이:
+
+1. went 배열로 갔었는지 확인을 한다.
+2. words 배열에 타겟이 있으면 확인을 한다.
+3. words 배열 전체를 돌면서 먼저 begin과 target이 같으면 count된 것을 compare과 비교해서 넣어준다.
+4. went[i]가 true면 이미 왔던 곳이므로 건너뛴다.
+5. target의 길이만큼 target과 words[i]를 한 글자씩 비교한다.
+6. 한 글자만 달라야 이동할 수 있고, 이동하면 begin을 words[i]로 바꿔주며, went[i]를 true로 바꿔준다.
+7. 이후 과정을 반복해 count를 늘려간다.
+8. toTarget을 다 돌면 answer에 compare을 넣어주고 리턴한다.
+
+
+
 ### 2020.06.10 알고리즘
 
 문제: https://programmers.co.kr/learn/courses/30/lessons/43162
