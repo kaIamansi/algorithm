@@ -1,5 +1,43 @@
 # algorithm workspace
 
+## 20/06/10
+```
+function solution(n, computers) {
+  let visit = []
+  visit.length = n;
+  visit.fill(false,0,n);
+  var answer = 0;
+
+
+  for(let i=0;i<n;i++){
+    if(visit[i]==false){
+      check(computers,visit,i);
+      answer++;
+    }
+  }
+  
+  return answer;
+}
+
+function check(c,v,index) {
+  if(v[index]==true) return;
+  else{
+    v[index]=true;
+    for(let i=0;i<c.length;i++){
+      if(c[index][i]==1){
+        check(c,v,i)
+      }
+    }
+  }
+}
+```
+
+### 풀이
+
+1. 방문을 했는지 알수있게 해주는 배열을 만들고 visit[i]가 false라면 check를 호출한다.
+
+2. visit[i]가 true라면 return 하고 false라면 1이 인지 검사한뒤 check를 부른다.
+
 ## 20/06/09
 ```
 function solution(n, lost, reserve) {
