@@ -55,8 +55,22 @@ class Solution {
         
     }
 }
+```
 
-/* 실패 코드 : 0만 나옴 (작동을 안함)
+기강이의 풀이:
+
+1. went 배열로 갔었는지 확인을 한다.
+2. words 배열에 타겟이 있으면 확인을 한다.
+3. words 배열 전체를 돌면서 먼저 begin과 target이 같으면 count된 것을 compare과 비교해서 넣어준다.
+4. went[i]가 true면 이미 왔던 곳이므로 건너뛴다.
+5. target의 길이만큼 target과 words[i]를 한 글자씩 비교한다.
+6. 한 글자만 달라야 이동할 수 있고, 이동하면 begin을 words[i]로 바꿔주며, went[i]를 true로 바꿔준다.
+7. 이후 과정을 반복해 count를 늘려간다.
+8. toTarget을 다 돌면 answer에 compare을 넣어주고 리턴한다.
+
+
+```java
+//실패 코드 : 0만 나옴 (작동을 안함)
 class Solution {
     String[] bgWords, cpWords;
     
@@ -100,20 +114,7 @@ class Solution {
         
     }
 }
-*/
 ```
-
-기강이의 풀이:
-
-1. went 배열로 갔었는지 확인을 한다.
-2. words 배열에 타겟이 있으면 확인을 한다.
-3. words 배열 전체를 돌면서 먼저 begin과 target이 같으면 count된 것을 compare과 비교해서 넣어준다.
-4. went[i]가 true면 이미 왔던 곳이므로 건너뛴다.
-5. target의 길이만큼 target과 words[i]를 한 글자씩 비교한다.
-6. 한 글자만 달라야 이동할 수 있고, 이동하면 begin을 words[i]로 바꿔주며, went[i]를 true로 바꿔준다.
-7. 이후 과정을 반복해 count를 늘려간다.
-8. toTarget을 다 돌면 answer에 compare을 넣어주고 리턴한다.
-
 
 
 ### 2020.06.10 알고리즘
