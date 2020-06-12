@@ -2,7 +2,7 @@
 
 
 
-### 2020.06.11 알고리즘
+### 2020.06.12 알고리즘
 
 문제: https://programmers.co.kr/learn/courses/30/lessons/43163
 
