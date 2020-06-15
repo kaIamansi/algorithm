@@ -1,7 +1,5 @@
 ## algorithm workspace
 
-
-
 ### 2020.06.12 알고리즘
 
 문제: https://programmers.co.kr/learn/courses/30/lessons/43163
@@ -66,7 +64,7 @@ class Solution {
 5. target의 길이만큼 target과 words[i]를 한 글자씩 비교한다.
 6. 한 글자만 달라야 이동할 수 있고, 이동하면 begin을 words[i]로 바꿔주며, went[i]를 true로 바꿔준다.
 7. 이후 과정을 반복해 count를 늘려간다.
-8. toTarget을 다 돌면 answer에 compare을 넣어주고 리턴한다.
+8. toTarget을 다 돌면 answer에 compare을 넣어주고 return한다.
 
 
 ```java
