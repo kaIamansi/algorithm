@@ -15,7 +15,7 @@ class Solution {
         boolean[] went = new boolean[words.length]; //네트워크처럼 갔던 곳 확인용
         
         for(int i = 0; i < words.length; i++) {
-            if(words[i].equals(target)) {   //words 배열에 타겟이 있으면 확인한다. 원래 없었는데 넣으니까 시간이 빨라졌다 히히.
+            if(words[i].equals(target)) {   //words 배열에 타겟이 있으면 확인한다. 원래 없었는데 넣으니까 시간이 빨라졌다
                 toTarget(begin, target, words, went, 0);
             }
         }
