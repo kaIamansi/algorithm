@@ -1,3 +1,5 @@
+import extend.addNullableInt
+import extend.nagative
 import java.util.*
 
 val sorting: (Pair<Int, Int>, Pair<Int, Int>) -> Int = { a, b ->

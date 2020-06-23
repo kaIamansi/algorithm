@@ -1,3 +1,5 @@
+package extend
+
 val Int.nagative : Int
     get() = this * -1
 

@@ -1,3 +1,5 @@
+import extend.index
+
 fun skillTree(skill: String, skill_trees: Array<String>): Int
         = with(checkSkillSequence(skill)) {
     var result = 0

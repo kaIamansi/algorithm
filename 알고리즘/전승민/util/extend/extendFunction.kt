@@ -1,3 +1,5 @@
+package extend
+
 import java.util.ArrayList
 
 infix fun <A,B,C>Pair<A,B>.to(value : C) = Triple(this.first, this.second, value)

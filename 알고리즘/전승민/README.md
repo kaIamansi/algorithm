@@ -5,11 +5,10 @@
 + 징검다리를 건널 수 있는 최대 인원을 구하는 문제.
 ```kotlin
 fun solution(stones: IntArray, k: Int): Int {
-    var answer = 987654321
-        var index = -1
+    var (answer, index) = Pair(987654321, -1)
         while (index < stones.size - k) {
-            index = (index+1..index+k).maxBy { stones[it] } ?: -1
-            if(answer > stones[index]) answer = stones[index]
+            index = (index + 1..index + k).maxBy { stones[it] }!!
+            if (answer > stones[index]) answer = stones[index]
         }
         return answer
 }
@@ -22,6 +21,34 @@ fun solution(stones: IntArray, k: Int): Int {
 4. 캐릭터의 인덱스가 stones-k보다 커질때까지 2, 3번을 반복함. (캐릭터의 인덱스가 stones-k가 되면 바로 다리를 건널 수 있음.)
 5. 선택된 바위 중 숫자가 가장 낮은 바위를 선택해 반환함.
 ## 시간복잡도 O(nk)
+
+## 다른 풀이
+```kotlin
+fun binarySearch(stones: IntArray, k: Int, left: Int, right: Int): Int {
+    val mid = (left + right) / 2
+    val result = isPossible(stones, k, mid)
+    if (left >= right) return left
+    else if (result) return binarySearch(stones, k, mid + 1, right)
+    else return binarySearch(stones, k, left, mid)
+}
+
+fun isPossible(stones: IntArray, k: Int, count: Int): Boolean {
+    var index = -1
+    while (index < stones.size - k) {
+        val temp = index
+        (index + 1..index + k).forEach { if (stones[it] >= count) index = it }
+        if (index == temp) return false
+    }
+    return true
+}
+```
++ 풀이
+1. 바위를 밟을 수 있는 횟수는 1~200000000. 이를 lower bound기법을 응용함.
+2. isPossible함수를 호출했을 때, false를 반환하는 첫 값을 찾음.
+3. 결과에 1을 뺀 후에 답을 반환함.
+
+## 시간복잡도 O(nlogk) 
++ k: 200000000
 
 # 2020/06/10
 [소스코드(Kotlin)](./network/network.kt)
@@ -67,14 +94,14 @@ fun solution(n: Int, lost: IntArray, reserve: IntArray): Int {
     reserve.forEach {
         clothesArr[it-1]++
     }
-    clothesArr.forEachIndexed { index, i ->
+    clothesArr.forEachIndexed { extend.getIndex, i ->
         if(i==0) {
-            if(index!=0 && clothesArr[index-1]==2) {
-                clothesArr[index-1]--
-                clothesArr[index]++
-            } else if(index!=clothesArr.size-1 && clothesArr[index+1]==2) {
-                clothesArr[index+1]--
-                clothesArr[index]++
+            if(extend.getIndex!=0 && clothesArr[extend.getIndex-1]==2) {
+                clothesArr[extend.getIndex-1]--
+                clothesArr[extend.getIndex]++
+            } else if(extend.getIndex!=clothesArr.size-1 && clothesArr[extend.getIndex+1]==2) {
+                clothesArr[extend.getIndex+1]--
+                clothesArr[extend.getIndex]++
             }
         }
     }
@@ -99,27 +126,27 @@ fun solution(n: Int, lost: IntArray, reserve: IntArray): Int {
 ```kotlin
 fun solution(priorities: IntArray, location: Int): Int {
     val queue = Array<Queue<Int>>(9) { LinkedList<Int>() }
-    priorities.forEachIndexed {index: Int, it: Int ->
-        queue[it-1].offer(index)
+    priorities.forEachIndexed {extend.getIndex: Int, it: Int ->
+        queue[it-1].offer(extend.getIndex)
     }
-    var index = 0
+    var extend.getIndex = 0
     val array = ArrayList<Int>()
     queue.reversedArray().forEach {
         val tempQueue = LinkedList<Int>()
         while(it.size>0) {
             val value = it.poll()
-            if(index <= value) {
+            if(extend.getIndex <= value) {
                 array.add(value)
-                index = value
+                extend.getIndex = value
             } else {
                 tempQueue.offer(value)
             }
-            if(value > it.peek() ?: infinity) index = 0
+            if(value > it.peek() ?: infinity) extend.getIndex = 0
         }
         while(tempQueue.size > 0) {
             val value = tempQueue.poll()
             array.add(value)
-            index = value
+            extend.getIndex = value
         }
     }
     return array.indexOf(location) + 1

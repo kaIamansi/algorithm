@@ -1,3 +1,4 @@
+import extend.getMidWith
 import kotlin.math.pow
 
 fun origami(n: Int): IntArray =
