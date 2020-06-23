@@ -2,7 +2,7 @@ fun steppingStoneCrossing(stones: IntArray, k: Int): Int {
     var answer = 987654321
     var index = -1
     while (index < stones.size - k) {
-        index = (index+1..index+k).maxBy { stones[it] } ?: -1
+        index = (index+1..index+k).maxBy { stones[it] }!!
         if(answer > stones[index]) answer = stones[index]
     }
     return answer
