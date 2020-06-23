@@ -1,5 +1,34 @@
 ## algorithm workspace
 
+# 2020/06/25
+[소스코드(Kotlin)](./steppingStoneCrossing/SteppingStoneCrossing.kt)
++ 징검다리를 건널 수 있는 최대 인원을 구하는 문제.
+```kotlin
+fun solution(stones: IntArray, k: Int): Int {
+    var answer = 987654321
+    var index = -1
+    while (index < stones.size) {
+        var max = index + 1
+        for (i in index + 2..index + k) {
+            if (i >= stones.size) break
+            if (stones[max] < stones[i]) max = i
+        }
+        if (stones.size - k <= index) break
+        index = max
+        if (answer > stones[index]) answer = stones[index]
+    }
+    return answer
+}
+```
++ 풀이
+1. 처음에는 인덱스를 -1로 둠(징검다리를 밟기 전)
+2. 캐릭터가 있는 바위 이후의 k개 바위 중 가장 숫자가 큰 바위를 선택함.
+(만약, k개의 바위가 있다면, 결국 마지막 캐릭터는 그 중 가장 큰 바위를 밟고 다리를 건너기 때문.)
+3. 캐릭터의 위치를 선택한 바위의 인덱스로 바꿈.
+4. 캐릭터의 인덱스가 stones-k보다 커질때까지 2, 3번을 반복함. (캐릭터의 인덱스가 stones-k가 되면 바로 다리를 건널 수 있음.)
+5. 선택된 바위 중 숫자가 가장 낮은 바위를 선택해 반환함.
+## 시간복잡도 O(nk)
+
 # 2020/06/10
 [소스코드(Kotlin)](./network/network.kt)
 + 컴퓨터가 서로 연결된 네트워크의 개수를 구하는 문제.

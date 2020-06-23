@@ -13,3 +13,5 @@ fun steppingStoneCrossing(stones: IntArray, k: Int): Int {
     }
     return answer
 }
+
+// https://programmers.co.kr/learn/courses/30/lessons/64062
