@@ -1,3 +1,21 @@
+## 2020-06-23
+
+```Javascript
+function solution(arr) {
+    let answer = new Array();
+
+    answer = arr.filter((item, index, array) => {
+        return item != array[index+1];
+    });
+
+    return answer;
+}
+```
+
+### 풀이
+
+1. filter를 사용하여 다음 인덱스 번호와 다른 요소만 담았다.
+
 ## 2020-06-09
 
 ```Javascript
