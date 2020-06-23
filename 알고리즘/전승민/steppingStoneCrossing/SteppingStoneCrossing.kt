@@ -1,4 +1,4 @@
-fun solution(stones: IntArray, k: Int): Int {
+fun steppingStoneCrossing(stones: IntArray, k: Int): Int {
     var answer = 987654321
     var index = -1
     while (index < stones.size) {

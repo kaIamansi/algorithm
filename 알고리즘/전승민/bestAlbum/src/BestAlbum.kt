@@ -4,7 +4,7 @@ val sorting: (Pair<Int, Int>, Pair<Int, Int>) -> Int = { a, b ->
     if (a.first.compareTo(b.first) == 0) b.second.compareTo(a.second) else a.first.compareTo(b.first)
 }
 
-fun solution(genres: Array<String>, plays: IntArray): IntArray = getResult(getInputData(genres, plays))
+fun bestAlbum(genres: Array<String>, plays: IntArray): IntArray = getResult(getInputData(genres, plays))
 
 fun getInputData(genres: Array<String>, plays: IntArray): Map<String, Pair<Int, TreeSet<Pair<Int, Int>>>> {
     val genreMap = HashMap<String, Pair<Int, TreeSet<Pair<Int, Int>>>>()

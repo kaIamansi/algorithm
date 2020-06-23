@@ -1,4 +1,4 @@
-fun solution(n: Int, lost: IntArray, reserve: IntArray): Int {
+fun workoutClothes(n: Int, lost: IntArray, reserve: IntArray): Int {
     val clothesArr = IntArray(n) {1}
     lost.forEach {
         clothesArr[it-1]--

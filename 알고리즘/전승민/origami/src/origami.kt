@@ -1,6 +1,6 @@
 import kotlin.math.pow
 
-fun solution(n: Int): IntArray =
+fun origami(n: Int): IntArray =
         (2.toDouble().pow(n.toDouble()) - 1).toInt().let {
             IntArray(it).apply {
                 putData(0, it - 1)

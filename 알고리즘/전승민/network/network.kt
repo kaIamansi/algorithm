@@ -1,7 +1,7 @@
 lateinit var parent: IntArray
 lateinit var rank: IntArray
 
-private fun solution(n: Int, computers: Array<IntArray>): Int {
+fun network(n: Int, computers: Array<IntArray>): Int {
     parent = IntArray(n)
     rank = IntArray(n) { 0 }
     for (i in 0 until n) {

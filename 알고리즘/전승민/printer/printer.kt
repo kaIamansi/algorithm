@@ -1,6 +1,6 @@
 import java.util.*
 
-fun solution(priorities: IntArray, location: Int): Int {
+fun printer(priorities: IntArray, location: Int): Int {
     val queue = Array<Queue<Int>>(9) { LinkedList<Int>() }
     priorities.forEachIndexed {index: Int, it: Int ->
         queue[it-1].offer(index)

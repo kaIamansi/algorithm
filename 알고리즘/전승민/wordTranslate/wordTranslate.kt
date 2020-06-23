@@ -1,6 +1,6 @@
 import kotlin.math.min
 
-fun solution(begin: String, target: String, words: Array<String>): Int
+fun wordTranslate(begin: String, target: String, words: Array<String>): Int
     = dps(begin, target, Array(words.size) { false }, words).let {
         if(it==infinity) 0 else it
     }
