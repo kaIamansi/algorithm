@@ -1,6 +1,6 @@
 import java.util.*
 
-fun solution(board: Array<IntArray>, moves: IntArray): Int {
+fun clawMachineGame(board: Array<IntArray>, moves: IntArray): Int {
     val length = board.size
     val stack: Stack<Int> = Stack()
     var result = 0

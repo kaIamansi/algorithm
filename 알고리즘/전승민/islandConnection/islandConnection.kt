@@ -1,12 +1,6 @@
 import java.util.*
 
-fun main() {
-    val n = 4
-    val costs = arrayOf(intArrayOf(0,1,1), intArrayOf(0,2,2), intArrayOf(1,2,5), intArrayOf(1,3,1), intArrayOf(2,3,8))
-    println(solution(n, costs))
-}
-
-private fun solution(n: Int, costs: Array<IntArray>): Int {
+fun islandConnection(n: Int, costs: Array<IntArray>): Int {
     var size = 0
     val visit = Array<Int?>(n) { null }
     val priorityQueue = PriorityQueue<IntArray>(compare)

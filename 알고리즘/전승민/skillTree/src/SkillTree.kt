@@ -1,4 +1,4 @@
-fun solution(skill: String, skill_trees: Array<String>): Int
+fun skillTree(skill: String, skill_trees: Array<String>): Int
         = with(checkSkillSequence(skill)) {
     var result = 0
     for (s: String in skill_trees) {
