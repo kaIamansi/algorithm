@@ -1,4 +1,85 @@
 ## algorithm workspace
+# 2020/06/10
+
+### 문제: 단어변환(https://programmers.co.kr/learn/courses/30/lessons/43163)
+
+### 오답코드(C++)
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int DFS(string begin, string target, vector<string> words, vector<bool>& check, int idx) {
+	int same = 0;
+	if (words[idx] == target)
+		return 1;
+	for (int i = 0; i < words.size(); i++) {
+
+		for (int j = 0; j < begin.size(); j++) {
+			if (begin[j] == words[idx][j])
+				same++;
+		}
+		if (same == begin.size() - 1) {
+			check[idx] = true;
+			DFS(words[idx])
+		}
+	}
+}
+
+int solution(string begin, string target, vector<string> words) {
+	int answer = 51;
+	bool istarget = false;
+	for (int i = 0; i < words.size(); i++) {
+		if (target == words[i])
+			istarget = true;
+	}
+	if (!istarget) return 0;
+
+	vector<bool> check(50);
+	fill(check.begin(), check.begin() + words.size(), false);
+
+
+
+	return answer;
+}
+```
+### 문제: 네트워크(https://programmers.co.kr/learn/courses/30/lessons/43162)
+
+### 코드(C++)
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+void DFS(int idx, vector<bool>& check, vector<vector<int>> computers) {
+	for (int a = 0; a < computers.size(); a++) {
+		check[idx] = true;
+		if (computers[idx][a] && !check[a]) {
+			
+			DFS(a, check, computers);
+		}
+
+	}
+}
+
+int solution(int n, vector<vector<int>> computers) {
+	int answer = 0;
+	vector<bool> check(200);
+	fill(check.begin(), check.begin() + computers.size(), false);
+	for (int i = 0; i < n; i++) {
+		if (!check[i]) {
+			DFS(i, check, computers);
+			answer++;
+		}
+			
+	}
+
+	return answer;
+}
+```
+
 # 2020/06/09
 ### 문제: 체육복(https://programmers.co.kr/learn/courses/30/lessons/42862)
 

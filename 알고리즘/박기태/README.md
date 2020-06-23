@@ -1,5 +1,44 @@
 ## algorithm workspace
 
+# 2020/06/10
+[소스코드(Javascript)](./2020-06-10/solution.js)
+
+- url : https://programmers.co.kr/learn/courses/30/lessons/43162  
+- 설명 : 컴퓨터 연결 정보를 2차원 배열로 받고 몇개의 네트워크로 만들 수 있는지 구해라.   
+
+```javascript  
+function solution(n, computers) {
+    let answer = 0;
+    
+    const checked = []; // 방문 여부 배열
+    checked.fill(false, 0, computers.length - 1); // false로 초기화
+    
+    function DFS(idx){
+        checked[idx] = true; // 현재 컴퓨터 방문 처리
+        // 방문하지 않았으면서 연결 되어 있는 컴퓨터에 방문
+        for(let i = 0; i < computers.length; i++)
+            if(!checked[i] && computers[idx][i])
+                DFS(i);
+    }
+    
+    for(let i = 0; i < computers.length; i++) {
+        if(!checked[i]) { // 방문하지 않았을 때만 실행
+            answer++; // 네트워크 개수 + 1
+            DFS(i); // DFS
+        }
+    }
+
+    return answer;
+}
+```
+
+- 풀이  
+1. 컴퓨터의 방문 여부를 확인하는 배열을 생성한다.  
+2. 컴퓨터를 순회하면서 방문하지 않은 컴퓨터인지 확인한다.  
+3. 방문하지 않은 컴퓨터는 탐색을 하면서 탐색 중 방문한 컴퓨터들을 모두 방문 여부에 체크 해준다.  
+4. 3의 과정을 통해 하나의 네트워크 전부 탐색한 것으로 판단하고, answer에 1을 올린다.  
+5. 2의 과정으로 네트워크의 개수를 구한다.
+
 
 # 2020/06/09  
 [소스코드(Javascript)](./2020-06-09/solution.js)  

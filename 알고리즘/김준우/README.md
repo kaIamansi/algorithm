@@ -1,5 +1,100 @@
 ## algorithm workspace
 
+## 20/06/12
+
+```js
+function solution(begin, target, words) {
+  if (!words.includes(target)) return 0; // words안에 target이 없으면 0 return
+  const result = []; // target을 발견한 모든 경우의 count를 저장.
+
+  function bfs(begin, words, count) {
+    const queue = [];
+
+    words.forEach((word, index) => {
+      // begin과 문자를 비교하여 몇개가 다른지 counting.
+      const wordCount = word
+        .split("")
+        .reduce((acc, v, i) => (begin[i] !== v ? acc + 1 : acc), 0);
+
+      // 만약 하나의 글자만 다르면
+      if (wordCount === 1) {
+        if (word === target) {
+          // 이때 target과 같으면 result에 올려줌.
+          result.push(count + 1);
+          return;
+        }
+
+        // words 배열에서 자신을 제외하고 다음 bfs에 넣어줄 word와 words를 만듬.
+        const dummy = [...words];
+        dummy.splice(index, 1);
+        queue.push({ word, dummy });
+      }
+    });
+
+    if (queue.length) {
+      // 카운팅 하고
+      ++count;
+      queue.forEach((v) => {
+        // 각 queue의 인자만큼 트리를 형성함.
+        bfs(v.word, v.dummy, count);
+      });
+    }
+  }
+
+  bfs(begin, words, 0);
+
+  // 가장 작은 값 return
+  return result.sort((a, b) => a - b)[0];
+}
+```
+
+### 풀이
+
+1. dfs로다가 풀음
+2. 주석 보셈
+
+---
+
+## 20/06/10
+
+```js
+function solution(n, computers) {
+  var answer = 0;
+  const check = [];
+
+  computers.forEach(() => {
+    check.push(false);
+  });
+
+  function DFS(index) {
+    check[index] = true;
+
+    for (let i = 0; i < computers.length; i++) {
+      if (computers[index][i] === 1 && !check[i]) {
+        DFS(i);
+      }
+    }
+  }
+
+  for (let i = 0; i < computers.length; i++) {
+    if (!check[i]) {
+      DFS(i);
+      answer += 1;
+    }
+  }
+
+  return answer;
+}
+```
+
+### 풀이
+
+1. computer의 개수만큼 배열 생성
+2. 각각의 컴퓨터마다 DFS를 돌림.
+3. answer에 하나씩 더해가면서 경우를 구함.
+
+---
+
 ## 20/06/09
 
 ```js
