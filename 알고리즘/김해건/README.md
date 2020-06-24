@@ -1,3 +1,38 @@
+## 2020-06-24
+
+```Javascript
+function solution(progresses, speeds) {
+    let answer = [];
+    let day = 0;
+    
+    for (let i=0; i<progresses.length; i++){
+        let needDay = Math.ceil((100-progresses[i])/speeds[i]);
+        
+        if (needDay > day){
+            day = needDay;
+            answer.push(1);
+        }
+        else
+            answer[answer.length-1]++;
+    }
+    
+    return answer;
+}
+```
+
+### 난관
+
+- 필요한 개발 일수를 순차적으로 비교하여 카운트를 올리는 방법을 고민했다.
+  - day라는 변수를 만들어 계속 비교하는 방법으로 해결했다.
+
+### 풀이
+
+1. Math.ceil을 이용해서 100에서 progresses를 빼고 speeds로 나누어 필요한 개발 일수를 구한다.
+2. 필요한 개발 일수를 순차적으로 비교한다.
+3. 필요한 개발 일수가 그 전 단계 일수보다 크다면 day에 저장하고 answer 배열에 1을 추가 한다.
+4. 다른 경우에는 현재 머물러 있는 answer의 index에 카운트만 올려준다.
+
+
 ## 2020-06-23
 
 ```Javascript
