@@ -1,4 +1,34 @@
 ## algorithm workspace
+# 2020/06/25
+
+### 문제: 징검다리 건너기(https://programmers.co.kr/learn/courses/30/lessons/64062)
+
+### 오답코드(C++)
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(vector<int> stones, int k) {
+    int answer = 0;
+    int jump = 0;
+	while (1) {
+		for (int i = 0; i < stones.size(); i++) {
+			if (stones[i] <= 0)
+			{
+				jump++;
+				if (jump >= k)
+					return answer;
+			}
+			else
+				jump = 0;
+			stones[i]--;
+		}
+		answer++;
+	}
+}
+```
 # 2020/06/10
 
 ### 문제: 단어변환(https://programmers.co.kr/learn/courses/30/lessons/43163)
