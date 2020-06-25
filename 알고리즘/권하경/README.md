@@ -1,5 +1,44 @@
 # algorithm workspace
 
+## 20/06/25
+```
+function solution(stones, k) {
+  let max = 200000000;
+  if(max==0){
+    if(k<=stones.length) return 0;
+  }
+  let result = find(stones,0,max,k);
+  
+  return result
+}
+
+function find(stones,start,end,k) {
+  if(start+1==end) return end
+  let num=0;
+  let result;
+  let bool = false;
+  for(let i=0;i<stones.length;i++){
+    if((start+end)/2>=stones[i]) num++;
+    else if((start+end)/2<stones[i]) num=0;
+    if(num==k) bool = true;
+  }
+  if(bool){
+    result = find(stones,start,parseInt((start+end)/2),k);
+  }else{    
+    result = find(stones,parseInt((start+end)/2),end,k);
+  }
+  return result;
+}
+```
+
+### 풀이
+
+1. start와 end의 중간값보다 stones[i]가 작거나 같으면 num을 올려주면서 크면 num을 초기화 해준다.
+
+2. num이 k와 같으면 start를 중간값으로 바꿔주고, 아니면 end를 중간값으로 바꿔주고 다시 계산
+
+**궁금한점 max값을 stones배열 중 가장 큰 값으로 바꾸면 효율성 다 틀린다.**
+
 ## 20/06/10
 ```
 function solution(n, computers) {
