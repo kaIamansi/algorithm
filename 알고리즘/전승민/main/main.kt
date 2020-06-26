@@ -1,3 +1,4 @@
 fun main() {
-    println(solution(intArrayOf(2, 4, 5, 3, 2, 1, 4, 2, 5, 1),3))
+    val array = arrayOf(intArrayOf(1,4,8,10), intArrayOf(5,5,5,5), intArrayOf(10,10,10,10), intArrayOf(10,10,10,20))
+    println(topographicShift(array, 3))
 }

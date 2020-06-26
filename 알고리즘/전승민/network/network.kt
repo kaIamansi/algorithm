@@ -32,9 +32,3 @@ fun union(x: Int, y: Int) {
     if (rank[x] > rank[y]) parent[y] = x else parent[x] = y
     if (rank[x] == rank[y]) rank[y]++
 }
-
-fun solution(arr: IntArray): Int {
-    var answer = 0
-
-    return answer
-}
