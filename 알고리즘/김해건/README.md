@@ -1,3 +1,25 @@
+## 2020-06-26
+
+```Javascript
+function solution(arr, divisor) {
+    let answer = [];
+    
+    answer = arr.filter(item => item % divisor == 0);
+    answer.sort((a,b) => a - b );
+    
+    if (answer == 0)
+        answer.push(-1);
+    
+    return answer;
+}
+```
+
+### 풀이
+
+1. filter를 이용하여 divisor로 나누어지는 요소들만 answer에 담는다.
+2. sort를 이용하여 정렬하는데 js는 ASCII 기준으로 정렬되기 때문에 함수를 설정해주어 크기 순으로 정렬한다.
+3. 만약 배열에 아무것도 없다면 -1을 추가한다. 
+
 ## 2020-06-24
 
 ```Javascript
