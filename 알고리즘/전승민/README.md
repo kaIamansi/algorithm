@@ -1,5 +1,75 @@
 ## algorithm workspace
 
+# 2020/07/02
+[소스코드(Java)](./phoneketmon/phoneketmon.java)
++ 가져갈 수 있는 포켓몬 종류 반환하기
+```java
+public int solution(int[] nums) {
+    int answer = 0;
+    Set<Integer> set = new HashSet();
+    for(int i : nums) {
+        set.add(i);
+    }
+    if(nums.length/2>set.size()) {
+        answer = set.size();
+    } else {
+        answer = nums.length/2;
+    }
+    return answer;
+}
+```
+
+# 2020/07/02
+[소스코드(Kotlin)](./numberBaseball/numberBaseball.kt)
++ 숫자야구에서 답이 될 수 있는 경우의 수 구하기
+```kotlin
+fun numberBaseball(baseball: Array<IntArray>): Int {
+    var answer = 0
+    (123..987).forEach { number ->
+        val str = number.toString()
+        if(str[0]==str[1]||str[1]==str[2]||str[0]==str[2]||str[0]=='0'||str[1]=='0'||str[2]=='0') return@forEach
+        var check = true
+        baseball.forEach {
+            var strike = 0
+            var ball = 0
+            (0..2).forEach {i ->
+                (0..2).forEach {j ->
+                    if(str[i]==it[0].toString()[j]) {
+                        if(i==j) strike++
+                        else ball++
+                    }
+                }
+            }
+            if(strike!=it[1]||ball!=it[2]) check = false
+        }
+        if(check) answer++
+    }
+    return answer
+}
+```
++ 풀이
+1. 123~987를 돌면서 주어진 배열의 조건을 모두 만족하는 값이 있을 때마다 답을 추가함.
+
+# 2020/07/02
+[소스코드(Java)](./EnglishWordChaining/EnglishWordChaining.java)
++ 끝말잇기에서 탈락한 사람, 번째 수 구하기
+```java
+int[] solution(int n, String[] words) {
+    int[] answer = {0,0};
+    Set<String> hashSet = new HashSet<String>();
+        
+    hashSet.add(words[0]);
+    for(int i=1; i<words.length; i++) {
+        hashSet.add(words[i]);
+        if(hashSet.size()!=i+1 || firstIndex(words[i])!=lastIndex(words[i-1])) {
+            answer[0] = i%n+1;
+            answer[1] = i/n+1;
+        }
+    }
+    return answer;
+}
+```
+
 # 2020/06/25
 [소스코드(Kotlin)](./steppingStoneCrossing/SteppingStoneCrossing.kt)
 + 징검다리를 건널 수 있는 최대 인원을 구하는 문제.

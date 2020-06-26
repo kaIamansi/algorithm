@@ -21,3 +21,4 @@ fun numberBaseball(baseball: Array<IntArray>): Int {
     }
     return answer
 }
+// https://programmers.co.kr/learn/courses/30/lessons/42841
