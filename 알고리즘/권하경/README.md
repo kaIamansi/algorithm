@@ -1,4 +1,79 @@
 # algorithm workspace
+## 20/07/09
+
+- Shiritory
+```
+function solution(nums) {
+  let arr = [];
+  for(let i=0;i<nums.length;i++){
+    if(!arr.includes(nums[i])) arr.push(nums[i]);
+  }
+  return arr.length<=nums.length/2 ? arr.length : nums.length/2
+}
+```
+
+### 풀이
+
+1. arr에 없는 포켓몬을 넣어준다.
+
+2. 만약 arr length가 nums length/2보다 작거나 같으면 arr length를 return해주고 아니면 nums length/2를 반환해준다.
+
+- Shiritory
+```
+function solution(n, words) {
+  let num = 0;
+  for(let i=1;i<words.length;i++){
+    if(words[i-1][words[i-1].length-1]!=words[i][0]||words.indexOf(words[i])!=i){
+      num = i+1;
+      break;
+    }
+    if(i==words.length-1) return [0,0];
+  }
+  
+  if(num%n==0) return [n,Math.round(num/n)]
+  else return [num%n,Math.round(num/n)];
+}
+```
+
+### 풀이
+
+1. word배열을 1부터 시작해서 전 단어의 마지막과 현재 단어의 첫번째가 같지 않거나 이미 있는 단어를 말했을 경우 num에 +1을 해주고 멈춘다.
+
+2. 만약 i가 words배열의 길이-1이라면 [0,0]을 return해준다.
+
+3. 첫번째 차례일때와 첫번째 이상일때를 나누고 num/n의 반내림을 해서 그 값들을 return 한다.
+
+- phoneketmon(틀림)
+```
+function solution(baseball) {
+  var answer = [];
+  for(let i=324;i<=987;i++){
+    let bool = true;
+    let arr = i.toString().split("");
+    for(let j=0;j<baseball.length;j++){
+      let Scount=0;
+      let Bcount=0;
+      let str = baseball[j][0].toString();
+      for(let k=0;k<3;k++){
+        if(arr[k]==(str[k]))Scount++;
+        else if(str.includes(arr[k])==1) Bcount++;
+      }
+      if(Scount!=baseball[j][1]||Bcount!=baseball[j][2])  {
+        bool=false;
+        break;
+      }
+    }
+    if(bool) answer.push(i);
+  }
+  return answer.length;
+}
+```
+
+### 풀이
+
+1. 123부터 +1을 해가면서 다 검사해준다.
+
+**정확성 60%**
 
 ## 20/06/25
 ```
@@ -37,7 +112,7 @@ function find(stones,start,end,k) {
 
 2. num이 k와 같으면 start를 중간값으로 바꿔주고, 아니면 end를 중간값으로 바꿔주고 다시 계산
 
-**궁금한점 max값을 stones배열 중 가장 큰 값으로 바꾸면 효율성 다 틀린다.**
+**궁금한점 max값을 stones배열 중 가장 큰 값으로 바꾸면 효율성 다 틀린다. -> Math.max의 문제**
 
 ## 20/06/10
 ```
