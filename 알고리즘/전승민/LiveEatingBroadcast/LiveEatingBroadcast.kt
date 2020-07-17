@@ -11,20 +11,21 @@ fun liveEatingBroadcast(food_times: IntArray, k: Long): Int {
     var totalTime = k
     var result : Pair<Int, Int> = 0 to 0
 
-    val timeSortQueue = PriorityQueue<Pair<Int, Int>>(sortByTime).addAllWithIndex(food_times)
+    val sortByTimePriorityQueue = PriorityQueue<Pair<Int, Int>>(sortByTime).addAllWithIndex(food_times)
 
-    while(timeSortQueue.isNotEmpty() && totalTime>=timeSortQueue.sumByMinTime(tempTime)) {
-        totalTime -= timeSortQueue.sumByMinTime(tempTime)
-        tempTime = timeSortQueue.peek().time
-        while(timeSortQueue.isNotEmpty() && tempTime>=timeSortQueue.peek().time) timeSortQueue.poll()
+    while(sortByTimePriorityQueue.isNotEmpty() && totalTime>=sortByTimePriorityQueue.sumByMinTime(tempTime)) {
+        totalTime -= sortByTimePriorityQueue.sumByMinTime(tempTime)
+        tempTime = sortByTimePriorityQueue.peek().time
+
+        while(sortByTimePriorityQueue.isNotEmpty() && tempTime>=sortByTimePriorityQueue.peek().time) sortByTimePriorityQueue.poll()
     }
 
-    if(timeSortQueue.isEmpty()) return -1
+    if(sortByTimePriorityQueue.isEmpty()) return -1
 
-    val sortByIndexQueue = PriorityQueue<Pair<Int,Int>>(sortByIndex).addAllAndReturn(timeSortQueue)
-    val remainTime = totalTime % sortByIndexQueue.size.toLong()
+    val sortByIndexQueue = PriorityQueue<Pair<Int,Int>>(sortByIndex).addAllAndReturn(sortByTimePriorityQueue)
+    val remainTime = totalTime % sortByIndexQueue.size
 
-    for(i in 0 .. remainTime) { result = sortByIndexQueue.poll() }
+    for(i in 0..remainTime) { result = sortByIndexQueue.poll() }
 
     return result.index
 }

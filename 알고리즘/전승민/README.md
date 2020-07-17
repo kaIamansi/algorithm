@@ -1,5 +1,41 @@
 ## algorithm workspace
 
+#2020/07/17
+[소스코드(Kotlin)](./LiveEatingBroadcast/LiveEatingBroadcast.kt)
++ 라운드 로빈에서, K초 뒤 실행중인 것 반환.
+```kotlin
+fun liveEatingBroadcast(food_times: IntArray, k: Long): Int {
+    var tempTime = 0
+    var totalTime = k
+    var result : Pair<Int, Int> = 0 to 0
+
+    val sortByTimePriorityQueue = PriorityQueue<Pair<Int, Int>>(sortByTime).addAllWithIndex(food_times)
+
+    while(sortByTimePriorityQueue.isNotEmpty() && totalTime>=sortByTimePriorityQueue.sumByMinTime(tempTime)) {
+        totalTime -= sortByTimePriorityQueue.sumByMinTime(tempTime)
+        tempTime = sortByTimePriorityQueue.peek().time
+        
+        while(sortByTimePriorityQueue.isNotEmpty() && tempTime>=sortByTimePriorityQueue.peek().time) sortByTimePriorityQueue.poll()
+    }
+
+    if(sortByTimePriorityQueue.isEmpty()) return -1
+
+    val sortByIndexQueue = PriorityQueue<Pair<Int,Int>>(sortByIndex).addAllAndReturn(sortByTimePriorityQueue)
+    val remainTime = totalTime % sortByIndexQueue.size
+
+    for(i in 0..remainTime) { result = sortByIndexQueue.poll() }
+
+    return result.index
+}
+```
++ 풀이
+1. time 순으로 오름차순 정렬.
+2. 가장 적은 시간 * 개수를 k에서 소요시킴. (다 사용한 음식은 제외시킴.)
+3. 2번 반복. k > 가장 적은 시간 * 개수일 동안
+4. 남은 k의 시간을 제외시킨 후의 요소의 개수로 나눈 나머지를 구함.
+5. 제외시킨 후의 요소를 인덱스값을 기준으로 정렬.
+6. 4번의 값을 인덱스로, 값을 구한 후 1을 더해 반환.
+
 # 2020/07/02
 [소스코드(Java)](./phoneketmon/phoneketmon.java)
 + 가져갈 수 있는 포켓몬 종류 반환하기
