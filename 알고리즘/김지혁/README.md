@@ -1,4 +1,56 @@
 ## algorithm workspace
+# 2020/07/17
+## 문제: 무지의 먹방 라이브(https://programmers.co.kr/learn/courses/30/lessons/42891?language=javascript)
+### 코드(C++)
+```c++
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<int> food_times, long long k) {
+	int answer = 0;
+	int index = 0;
+	vector<pair<int, int>> buff;
+
+	for (int i = 0; i < food_times.size(); i++) {
+		buff.push_back(make_pair(food_times[i], i));
+	}
+	cout << buff.size() << endl;
+	sort(buff.begin(), buff.end(), compare);
+	for (int i = 0; i < buff.size(); i++) {
+		cout << buff[i].first << endl;
+	}
+	return answer;
+}
+
+bool compare(pair<int, int> a, pair<int, int> b) {
+	return a < b;
+}
+```
+### 코드(js)
+```js
+function solution(food_times, k) {
+    var answer = 0;
+    var index = 0;
+    if(food_times.reduce((a,b)=>a+b) < k)
+        return -1;
+    while(1) {
+        if(index >= food_times.length)
+            index = 0;
+        if(food_times[index] > 0) {
+            if(k == 0)
+                return index + 1;
+            food_times[index]--;
+            k--;
+        }
+        index++;
+    }
+}
+```
+- 음식을 먹는 시간이 k보다 작을 경우 -1 리턴
+- 
 # 2020/07/16
 ## 문제: 숫자 야구(https://programmers.co.kr/learn/courses/30/lessons/42841)
 - 숫자야구 게임을 하여 가능한 경우의 수를 찾아야 한다.

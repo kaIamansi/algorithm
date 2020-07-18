@@ -1,7 +1,37 @@
 # algorithm workspace
+## 20/07/17
+
+- eatLive(다 못품..)
+```
+function solution(food_times, k) {
+  let indexArr = [];
+  let num = 0;
+  for (let i = 0; i < food_times.length; i++) {
+    indexArr.push({index:i,value:food_times[i]});
+  }
+  indexArr.sort((before, next) => {
+    if (before.value > next.value) return 1;
+    else if (before.value < next.value) return -1;
+    else if (before.index > next.index) return -1;
+    else if (before.index < next.index) return 1;
+    return 0;
+  });
+  for(let i=0;i<indexArr.length;i++){
+    
+  }
+}
+
+```
+
+### 풀이
+
+1. 인덱스를 저장해주고 sort를 해준다.
+
+2. 최솟값*배열길이 만큼 k에서 빼고 k가 만약 0이면 마지막 최솟값 인덱스에서 제일 가까운 인덱스를 반환해주고 k가 0보다 작다면 |-k|번째의 최솟값인덱스 값을 찾아준다.
+
 ## 20/07/09
 
-- Shiritory
+- phoneketmon
 ```
 function solution(nums) {
   let arr = [];
@@ -43,7 +73,7 @@ function solution(n, words) {
 
 3. 첫번째 차례일때와 첫번째 이상일때를 나누고 num/n의 반내림을 해서 그 값들을 return 한다.
 
-- phoneketmon(틀림)
+- baseball(틀림)
 ```
 function solution(baseball) {
   var answer = [];
