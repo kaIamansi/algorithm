@@ -1,4 +1,28 @@
 # algorithm workspace
+
+## 20/07/20
+- Country124
+```
+public class Country124 {
+    public static void main(String[] args) {
+        System.out.println(solution(4));
+    }
+    public static String solution(int n) {
+        int[] arr={1,2,4};
+        String answer = "";
+
+        if(n==0)
+            return "";
+        else
+            answer = solution(((n-1)/3)) + arr[(n-1)%3];
+        return answer;
+    }
+}
+```
+
+- 풀이
+1. n이 0일때까지 재귀를 돌린 다음 (n-1)%3번째를 계속 해서 answer에 더해준다.
+
 ## 20/07/17
 
 - eatLive(다 못품..)
