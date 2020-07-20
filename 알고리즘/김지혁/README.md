@@ -1,4 +1,25 @@
 ## algorithm workspace
+# 2020/07/20
+## 문제: 124나라의 숫자(https://programmers.co.kr/learn/courses/30/lessons/12899?language=javascript)
+### 코드(js)
+```js
+function solution(n) {
+    var answer = '';
+    
+    while(n > 0) {
+        if(n % 3 == 0) {
+            answer = 4 + answer;
+            n = parseInt(n/3) - 1;
+        }
+        else {
+            answer = (n % 3) + answer;
+            n = parseInt(n/3);
+        }
+    }
+    return answer;
+}
+```
+- 풀이 3의 배수의 몫에 -1을 해주면 다음 자리 숫자가 나온다.
 # 2020/07/17
 ## 문제: 무지의 먹방 라이브(https://programmers.co.kr/learn/courses/30/lessons/42891?language=javascript)
 ### 코드(C++)
