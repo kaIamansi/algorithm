@@ -1,5 +1,26 @@
 ## algorithm workspace
 
+#2020/07/20
+[소스코드(Java)](./numberOf124Country/NumberOf124Country.java)
++ 1,2,4만의 숫자로 입력된 숫자 표현하기
+```java
+public String solution(int n) {
+        StringBuilder answer = new StringBuilder();
+        String[] arr = new String[]{"4","1","2"};
+        while (n>0) {
+            String str;
+            str = arr[n % 3];
+            if (n % 3 == 0) { n--; }
+            n /= 3;
+            answer.insert(0, str);
+        }
+        return answer.toString();
+    }
+```
++ 풀이
+1. 3으로 나눈 나머지 값을 통해 자리수마다의 숫자를 구함.
+2. 나머지가 0인 경우, 그 다음 자리수의 값을 낮추기 위해 1을 뺌.
+
 #2020/07/17
 [소스코드(Kotlin)](./LiveEatingBroadcast/LiveEatingBroadcast.kt)
 + 라운드 로빈에서, K초 뒤 실행중인 것 반환.
