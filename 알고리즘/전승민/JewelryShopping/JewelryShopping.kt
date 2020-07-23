@@ -12,12 +12,12 @@ fun jewelryShopping(gems: Array<String>): IntArray {
         }
     } // 처음으로 모든 보석을 담는 위치를 end에 저장, hashMap에 보석의 종류 등록
     (0 until end).forEach {
-        hashMap[gems[it]] = (hashMap[gems[it]] ?: 0) + 1
+        hashMap[gems[it]] = hashMap[gems[it]]!! + 1
     } // 해당 구간에서 보석의 개수 저장
 
     for(i in end until gems.size) {
         hashMap[gems[i]] = hashMap[gems[i]]!! + 1
-        while(hashMap[gems[start]] ?: 0 > 1 && start < i) {
+        while(hashMap[gems[start]] ?: 0 > 1) {
             hashMap[gems[start]] = hashMap[gems[start]]!! - 1
             start++
         } // 구간 시작 부분을 가능한 뒤로 미룸(모든 보석이 최소한 하나씩은 존재.)
