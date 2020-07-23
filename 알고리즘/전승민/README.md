@@ -5,23 +5,23 @@
 + 모든 보석의 종류를 진열할 수 있는 최소 길이의 구간의 위치를 구하기.
 ```kotlin
 fun jewelryShopping(gems: Array<String>): IntArray {
-    var (start, to) = 0 to 0
+    var (start, end) = 0 to 0
     val hashMap = HashMap<String, Int>()
-    val lengthArray = IntArray(gems.size){987654321}
+    val lengthArray = IntArray(gems.size) { 987654321 }
 
     gems.forEachIndexed { index, it ->
         if(!hashMap.containsKey(it)) {
-            to = index
+            end = index
             hashMap[it] = 0
         }
     } // 처음으로 모든 보석을 담는 위치를 to에 저장, hashMap에 보석의 종류 등록
-    (0 until to).forEach {
-        hashMap[gems[it]] = (hashMap[gems[it]] ?: 0) + 1
+    (0 until end).forEach {
+        hashMap[gems[it]] = hashMap[gems[it]]!! + 1
     } // 해당 구간에서 보석의 개수 저장
 
-    for(i in to until gems.size) {
+    for(i in end until gems.size) {
         hashMap[gems[i]] = hashMap[gems[i]]!! + 1
-        while(hashMap[gems[start]] ?: 0 > 1 && start < i) {
+        while(hashMap[gems[start]]!! > 1 && start < i) {
             hashMap[gems[start]] = hashMap[gems[start]]!! - 1
             start++
         } // 구간 시작 부분을 가능한 뒤로 미룸(모든 보석이 최소한 하나씩은 존재.)
