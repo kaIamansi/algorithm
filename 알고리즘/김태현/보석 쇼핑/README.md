@@ -100,3 +100,52 @@ vector<int> solution(vector<string> gems) {
 3. `li`는 보석의 위치만 저장하는 리스트이다. 처음부터 순차적으로 돌 것이기 때문에 항상 정렬되어 있다.
 4. 처음부터 순회하면서 보석들의 마지막 위치를 찾는다.
 5. 모든 보석의 위치가 `dictionary`에 등록이 되었다면 `li`의 양 끝과 기존 답을 비교해서 반환한다.
+
+여기서 가장 시간을 많이 잡아먹는 부분은 `li.remove(dictionary[gems[i]])`라고 생각했다. 값을 찾기 위해서 `front`부터 선형탐색을 할 것이기 때문에, 최악의 상황에는 시간 복잡도 `O(n^2)`까지도 나올 수 있었다.
+
+따라서, 값을 한 번에 찾을 수 있는 `map`을 사용하기로 했다. 더구나 `map`은 key 값을 기준으로 정렬이 된다는 점을 이용해서 `li.front()`의 기능도 할 수 있었다.
+
+---
+* 최종 코드
+
+~~~cpp
+#include <string>
+#include <vector>
+#include <unordered_set>
+#include <unordered_map>
+#include <map>
+using namespace std;
+
+vector<int> solution(vector<string> gems) {
+    vector<int> answer = vector<int>{ 1, 10000000 };
+
+    auto set = unordered_set<string>(gems.begin(), gems.end());
+    unordered_map<string, int> dictionary;
+
+    map<int, string> lastLocation;
+    int min = 10000000;
+    bool dictionaryFull = false;
+    for (int i = 0; i < gems.size(); i++) {
+        if (dictionary.find(gems[i]) == dictionary.end()) {
+            dictionary.insert(make_pair(gems[i],i+1));
+            lastLocation.insert(make_pair(i + 1, gems[i]));
+            if (min == 10000000) min = i + 1;
+        }
+        else {
+            if (gems[i] == lastLocation[min])
+                min = (++lastLocation.begin())->first;
+
+            lastLocation.erase(dictionary[gems[i]]);
+            lastLocation.insert(make_pair(i + 1, gems[i]));
+            dictionary[gems[i]] = i + 1;
+        }
+
+        if (dictionary.size() == set.size() && answer[1] - answer[0] > i + 1 - min) {
+            answer[0] = min;
+            answer[1] = i+1;
+        }
+    }
+
+    return answer;
+}
+~~~
