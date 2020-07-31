@@ -1,4 +1,43 @@
 # algorithm workspace
+## 20/07/31
+- Shopping(정확성 50%, 효율성 0%)
+```
+let arr = [];
+
+function solution(gems) {
+  let gems_kind = [];
+  gems.forEach(element => {
+    if(!gems_kind.includes(element)){
+      gems_kind.push(element);
+    }
+  });
+
+  find(gems_kind,gems,0,gems_kind.length-1);
+  arr.sort((a,b)=>{
+    if((a.end-a.start) - (b.end-b.start)>0) return 1;
+    if(a.start>b.start) return 1;
+  })
+  return [arr[0].start+1,arr[0].end+1];
+}
+
+function find(gems_kind,gems,start,end) {
+  let copy = gems.slice(start,end+1);
+  if(end>gems.length-1) return;
+  for(let i=0;i<gems_kind.length;i++){
+    if(!copy.includes(gems_kind[i])) {
+      find(gems_kind,gems,start,end+1);
+      break;
+    }
+    if(i==gems_kind.length-1){
+      arr.push({start,end});
+      find(gems_kind,gems,start+1,(start+1)+gems_kind.length-1);
+    }
+  }
+}
+```
+
+- 풀이
+1. 보석 종류를 kind 배열에 넣고 최소구간부터 시작해 그 구간에 모든 보석이 있으면 start+1, 없으면 end+1을 해서 구한다.
 
 ## 20/07/20
 - Country124
